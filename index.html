@@ -6,15 +6,20 @@
 <title>UCL MSc Grade Calculator</title>
 <style>
 :root{color-scheme:light;--ink:#172a36;--muted:#526674;--line:#dce4e9;--paper:#fff;--wash:#f3f6f8;--accent:#146b60;--soft:#eaf5f1;--danger:#ae3434}
-*{box-sizing:border-box}body{margin:0;background:var(--wash);color:var(--ink);font:15px/1.5 system-ui,-apple-system,"Segoe UI",sans-serif}main{max-width:1240px;margin:auto;padding:32px 24px 56px}h1{font-size:30px;letter-spacing:-1px;margin:3px 0 4px}h2{font-size:19px;margin:0}p{margin:6px 0 12px}.eyebrow{font-size:12px;text-transform:uppercase;letter-spacing:1.8px;color:var(--accent);font-weight:750}.muted,small{color:var(--muted)}small{font-size:12px}header,.row,.section-head{display:flex;align-items:center;justify-content:space-between;gap:12px;flex-wrap:wrap}.actions{display:flex;gap:8px;align-items:center;flex-wrap:wrap}button{border:1px solid var(--line);border-radius:7px;background:white;color:var(--ink);padding:8px 12px;font:inherit;font-size:13px;cursor:pointer}button:hover{border-color:var(--accent);background:var(--soft)}button.primary{background:var(--accent);color:white;border-color:var(--accent)}button:disabled{opacity:.45;cursor:default}button.danger{color:var(--danger)}:focus-visible{outline:3px solid #38a993;outline-offset:2px}input,select{max-width:100%;border:1px solid #c7d2d9;border-radius:6px;background:white;color:var(--ink);padding:7px 8px;font:inherit;font-size:13px}input[type=number]{width:90px}input[type=checkbox]{accent-color:var(--accent);width:17px;height:17px;cursor:pointer}input:invalid{border-color:var(--danger)}label{font-size:13px}.field{display:flex;flex-direction:column;gap:4px}.notice{background:#fff8e9;border:1px solid #ebddba;border-radius:8px;padding:10px 14px;font-size:13px;color:#6a501f;margin:18px 0}.stats{display:grid;grid-template-columns:repeat(4,1fr);gap:12px;margin:20px 0}.stat,.panel,.module{border:1px solid var(--line);background:var(--paper);border-radius:10px}.stat{padding:17px}.stat span{font-size:12px;color:var(--muted);display:block}.stat strong{display:block;font-size:27px;font-weight:700;letter-spacing:-.6px;margin:3px 0;line-height:1.3}.stat strong.compact{font-size:19px}.panel{padding:20px;margin-bottom:20px}.solver-controls{display:flex;align-items:end;gap:12px;flex-wrap:wrap;margin-top:14px}.solver-controls select{min-width:155px}.solver-result{background:var(--soft);border-radius:8px;padding:12px 14px;margin-top:14px;min-height:48px}.solver-result.error{background:#fff1ed;color:#7c3b22}#solver-message{white-space:pre-line;font-size:14px}.section-head{margin:24px 0 12px}.module{margin:12px 0;overflow:hidden}.module-head{padding:14px 16px;background:#fbfcfd;border-bottom:1px solid var(--line);display:flex;gap:12px;align-items:end;flex-wrap:wrap}.module-name{flex:1;min-width:220px}.module-name input{font-weight:650;width:100%;font-size:15px}.code{width:112px}.module-result{padding:9px 16px;display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap;background:#f7faf9;font-size:13px}.module-result strong{font-size:15px}.error-text{color:var(--danger)}.table-wrap{overflow-x:auto}table{border-collapse:collapse;width:100%;min-width:1000px;text-align:left}th{font-size:11px;color:var(--muted);font-weight:650;background:#fff;padding:8px;text-transform:uppercase;letter-spacing:.4px}td{padding:9px 8px;border-top:1px solid #edf0f2;vertical-align:middle;font-size:13px}th:first-child,td:first-child{padding-left:16px;width:42px}td input[type=number]{width:78px}.assessment-label{width:190px;display:block;margin-bottom:4px}.assessment-type{width:190px;font-size:12px;padding:4px 7px;color:var(--muted)}.requirement{width:132px;display:block}.minimum{display:flex;gap:5px;align-items:center;margin-top:4px}.minimum input{width:65px!important}.assessment-result{font-size:12px;min-width:112px}.assessment-result span{display:block;color:var(--muted)}.module-footer{padding:8px 16px;display:flex;justify-content:space-between;gap:10px;align-items:center}.selection-label{display:flex;gap:7px;align-items:center;color:var(--muted);font-size:12px}.toolbar{display:flex;gap:8px;flex-wrap:wrap}.link-button{padding:5px 9px;font-size:12px}details{font-size:13px}summary{cursor:pointer;font-weight:650}details ul{padding-left:20px}a{color:var(--accent)}#feedback{margin:10px 0;font-size:13px;min-height:20px}#save-status{font-size:12px}#award-note{white-space:pre-line;font-size:13px;margin-top:12px}[hidden]{display:none!important}.empty{padding:30px;text-align:center;color:var(--muted)}.sr-only{position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap;border:0}@media(max-width:760px){main{padding:20px 12px}.stats{grid-template-columns:repeat(2,1fr)}h1{font-size:25px}.panel{padding:15px}.module-head{padding:12px}.module-name{min-width:180px}.stat{padding:12px}.solver-controls .field{flex:1;min-width:150px}.solver-controls select{width:100%;min-width:0}}@media(prefers-reduced-motion:no-preference){button{transition:background .15s}}
+*{box-sizing:border-box}body{margin:0;background:var(--wash);color:var(--ink);font:15px/1.5 system-ui,-apple-system,"Segoe UI",sans-serif}main{max-width:1240px;margin:auto;padding:32px 24px 56px}h1{font-size:30px;letter-spacing:-1px;margin:3px 0 4px}h2{font-size:19px;margin:0}p{margin:6px 0 12px}.eyebrow{font-size:12px;text-transform:uppercase;letter-spacing:1.8px;color:var(--accent);font-weight:750}.muted,small{color:var(--muted)}small{font-size:12px}header,.row,.section-head{display:flex;align-items:center;justify-content:space-between;gap:12px;flex-wrap:wrap}.actions{display:flex;gap:8px;align-items:center;flex-wrap:wrap}button{border:1px solid var(--line);border-radius:7px;background:white;color:var(--ink);padding:8px 12px;font:inherit;font-size:13px;cursor:pointer}button:hover{border-color:var(--accent);background:var(--soft)}button.primary{background:var(--accent);color:white;border-color:var(--accent)}button:disabled{opacity:.45;cursor:default}button.danger{color:var(--danger)}:focus-visible{outline:3px solid #38a993;outline-offset:2px}input,select{max-width:100%;border:1px solid #c7d2d9;border-radius:6px;background:white;color:var(--ink);padding:7px 8px;font:inherit;font-size:13px}input[type=number]{width:90px}input[type=checkbox]{accent-color:var(--accent);width:17px;height:17px;cursor:pointer}input:invalid{border-color:var(--danger)}label{font-size:13px}.field{display:flex;flex-direction:column;gap:4px}.notice{background:#fff8e9;border:1px solid #ebddba;border-radius:8px;padding:10px 14px;font-size:13px;color:#6a501f;margin:18px 0}.stats{display:grid;grid-template-columns:repeat(4,1fr);gap:12px;margin:20px 0}.stat,.panel,.module{border:1px solid var(--line);background:var(--paper);border-radius:10px}.stat{padding:17px}.stat span{font-size:12px;color:var(--muted);display:block}.stat strong{display:block;font-size:27px;font-weight:700;letter-spacing:-.6px;margin:3px 0;line-height:1.3}.stat strong.compact{font-size:19px}.panel{padding:20px;margin-bottom:20px}.assessment-overview{background:var(--soft);border-radius:8px;padding:12px 14px;margin-top:14px;min-height:48px}#overview-message{white-space:pre-line;font-size:14px}.section-head{margin:24px 0 12px}.module{margin:12px 0;overflow:hidden}.module-head{padding:14px 16px;background:#fbfcfd;border-bottom:1px solid var(--line);display:flex;gap:12px;align-items:end;flex-wrap:wrap}.module-name{flex:1;min-width:220px}.module-name input{font-weight:650;width:100%;font-size:15px}.code{width:112px}.module-result{padding:9px 16px;display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap;background:#f7faf9;font-size:13px}.module-result strong{font-size:15px}.error-text{color:var(--danger)}.table-wrap{overflow-x:auto}table{border-collapse:collapse;width:100%;min-width:1000px;text-align:left}th{font-size:11px;color:var(--muted);font-weight:650;background:#fff;padding:8px;text-transform:uppercase;letter-spacing:.4px}td{padding:9px 8px;border-top:1px solid #edf0f2;vertical-align:middle;font-size:13px}th:first-child,td:first-child{padding-left:16px;width:42px}td input[type=number]{width:78px}.assessment-label{width:190px;display:block;margin-bottom:4px}.assessment-type{width:190px;font-size:12px;padding:4px 7px;color:var(--muted)}.requirement{width:132px;display:block}.minimum{display:flex;gap:5px;align-items:center;margin-top:4px}.minimum input{width:65px!important}.assessment-result{font-size:12px;min-width:112px}.assessment-result span{display:block;color:var(--muted)}.module-footer{padding:8px 16px;display:flex;justify-content:space-between;gap:10px;align-items:center}.selection-label{display:flex;gap:7px;align-items:center;color:var(--muted);font-size:12px}.toolbar{display:flex;gap:8px;flex-wrap:wrap}.link-button{padding:5px 9px;font-size:12px}details{font-size:13px}summary{cursor:pointer;font-weight:650}details ul{padding-left:20px}a{color:var(--accent)}#feedback{margin:10px 0;font-size:13px;min-height:20px}#save-status{font-size:12px}#award-note{white-space:pre-line;font-size:13px;margin-top:12px}[hidden]{display:none!important}.empty{padding:30px;text-align:center;color:var(--muted)}.sr-only{position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap;border:0}@media(max-width:760px){main{padding:20px 12px}.stats{grid-template-columns:repeat(2,1fr)}h1{font-size:25px}.panel{padding:15px}.module-head{padding:12px}.module-name{min-width:180px}.stat{padding:12px}}@media(prefers-reduced-motion:no-preference){button{transition:background .15s}}
 </style>
 <style>
-#solver-message{font-weight:600;line-height:1.55;overflow-wrap:anywhere}
+#overview-message{font-weight:600;line-height:1.55;overflow-wrap:anywhere}
 .assessment-map-head{display:flex;align-items:center;justify-content:space-between;gap:8px;flex-wrap:wrap;margin:14px 0 10px;padding-top:12px;border-top:1px solid #cfe3db}
-.assessment-map-head h3{font-size:13px;margin:0}.map-legend{display:flex;gap:12px;flex-wrap:wrap;color:var(--muted);font-size:11px}.map-legend span{display:inline-flex;align-items:center;gap:5px}.map-dot{width:7px;height:7px;display:inline-block;border-radius:50%;background:#b77b1e}.map-dot.fixed{background:#728695}.map-dot.vary{background:var(--accent)}
-.assessment-map{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:9px}.map-module{padding:11px;border:1px solid #d0e3db;border-radius:8px;background:#ffffffb8;min-width:0}.map-module.target-module{border-color:var(--accent);box-shadow:inset 0 0 0 1px var(--accent)}.map-module-head{display:flex;justify-content:space-between;align-items:start;gap:8px;margin-bottom:8px}.map-module h4{font-size:13px;line-height:1.35;margin:0;font-weight:650;overflow-wrap:anywhere}.map-module small{display:block;font-size:10px;margin-top:3px}.map-module-mark{font-size:12px;font-weight:650;white-space:nowrap;color:var(--accent)}.category-chips{display:flex;flex-wrap:wrap;gap:5px}.category-chip{flex:1 1 110px;min-width:0;text-align:left;padding:6px 8px;border-radius:6px;border:1px dashed #d5be91;background:#fffdf7;font-size:11px;line-height:1.4}.category-chip:hover{border-color:var(--accent)}.category-chip.fixed{border-style:solid;border-color:#dbe3e8;background:#f5f8fa}.category-chip.vary{border-style:solid;border-color:#75b0a0;background:#dcefe6}.category-chip.outside{border-style:dotted}.chip-top{display:flex;align-items:start;justify-content:space-between;gap:6px}.chip-label{overflow-wrap:anywhere;font-weight:600}.chip-weight{white-space:nowrap;color:var(--muted)}.chip-status{display:block;margin-top:2px;font-size:10px;color:#7b591f}.category-chip.fixed .chip-status{color:var(--muted)}.category-chip.vary .chip-status{color:#125c48}.map-help{display:block;font-size:11px;margin-top:9px}.solver-result.error .map-module{border-color:#e5d6ca}.solver-result.error .assessment-map-head{border-color:#e5d6ca}
+.assessment-map-head h3{font-size:13px;margin:0}.map-legend{display:flex;gap:12px;flex-wrap:wrap;color:var(--muted);font-size:11px}.map-legend span{display:inline-flex;align-items:center;gap:5px}.map-dot{width:7px;height:7px;display:inline-block;border-radius:50%;background:#b77b1e}.map-dot.entered{background:#728695}
+.assessment-map{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:9px}.map-module{padding:11px;border:1px solid #d0e3db;border-radius:8px;background:#ffffffb8;min-width:0}.map-module-head{display:flex;justify-content:space-between;align-items:start;gap:8px;margin-bottom:8px}.map-module h4{font-size:13px;line-height:1.35;margin:0;font-weight:650;overflow-wrap:anywhere}.map-module small{display:block;font-size:10px;margin-top:3px}.map-module-mark{font-size:12px;font-weight:650;white-space:nowrap;color:var(--accent)}.category-chips{display:flex;flex-wrap:wrap;gap:5px}.category-chip{flex:1 1 110px;min-width:0;text-align:left;padding:6px 8px;border-radius:6px;border:1px dashed #d5be91;background:#fffdf7;font-size:11px;line-height:1.4}.category-chip.entered{border-style:solid;border-color:#dbe3e8;background:#f5f8fa}.chip-top{display:flex;align-items:start;justify-content:space-between;gap:6px}.chip-label{overflow-wrap:anywhere;font-weight:600}.chip-weight{white-space:nowrap;color:var(--muted)}.chip-status{display:block;margin-top:2px;font-size:10px;color:#7b591f}.category-chip.entered .chip-status{color:var(--muted)}.map-help{display:block;font-size:11px;margin-top:9px}
 @media(max-width:1000px){.assessment-map{grid-template-columns:repeat(2,minmax(0,1fr))}}@media(max-width:560px){.assessment-map{grid-template-columns:minmax(0,1fr)}}
 .table-wrap{position:relative}
+.map-module.has-weight-warning{border-color:#ce9d42;background:#fffdf6}.weight-warning{margin:8px 0 0;padding:8px;border-radius:6px;background:#fff0cd;color:#754b0b;font-size:11px;line-height:1.45}.weight-warning strong,.weight-warning span{display:block}.weight-warning span{margin-top:2px}
+.forecast-controls{display:flex;align-items:end;gap:16px;flex-wrap:wrap;margin-top:15px}.forecast-controls input{width:110px}.forecast-controls select{min-width:160px}.forecast-explainer{font-size:12px;color:var(--muted);margin:10px 0 0;max-width:900px}.forecast-status{display:flex;gap:7px;flex-wrap:wrap;margin:10px 0}.rank-badge{display:inline-flex;align-items:center;gap:6px;border:1px solid #d5e0da;border-radius:20px;padding:5px 10px;font-size:11px;background:#fff;color:var(--muted)}.rank-badge.met{color:#155d46;background:#e0f1e6;border-color:#95bfa7}.rank-badge.not-met{background:#fff6e9;color:#775529;border-color:#e3cfac}.forecast-context{font-size:12px;color:var(--muted);white-space:pre-line}.estimate{border-top:1px solid #d0e3db;margin-top:10px;padding-top:9px;font-size:11px;overflow-wrap:anywhere}.estimate strong{display:block;font-size:14px;color:#14634f}.estimate span{display:block;margin-top:3px}.estimate .estimate-meta{color:var(--muted);font-size:10px}.estimate.unavailable strong{font-size:12px;color:#865a13}.estimate.warning strong{color:#865a13}.forecast-error{color:var(--danger)}.estimate-line{line-height:1.5}.forecast-conditional{font-size:11px;color:#775529;margin:5px 0}.category-chip.estimated{border-style:solid;border-color:#90bfa8;background:#e7f4ed}.category-chip.estimated .chip-status{color:#155d46}.map-dot.estimated{background:#288366}
+</style>
+<style>
+.category-manager{margin-top:20px}.category-manager>summary{font-size:15px}.category-manager>summary small{font-weight:400;margin-left:8px}.category-add{display:flex;align-items:end;gap:10px;flex-wrap:wrap;margin:14px 0}.category-add .field{flex:1;min-width:170px}.category-add input[type=text]{width:100%}.category-add input:placeholder-shown{border-color:#c7d2d9}.category-exam{display:inline-flex;align-items:center;gap:6px;font-size:12px;white-space:nowrap}.category-rows{display:grid;gap:7px}.category-row{display:flex;align-items:center;gap:9px;flex-wrap:wrap;padding:9px 10px;background:var(--wash);border-radius:7px}.category-row .category-name{flex:1;min-width:130px;width:170px}.category-usage{font-size:11px;color:var(--muted);min-width:95px}.category-message{font-size:12px;color:var(--accent);margin:8px 0}.category-reassign{padding:12px;background:#fff6e5;border:1px solid #e6cea3;border-radius:7px;margin-top:10px}.category-reassign p{font-size:12px}.category-reassign .actions{margin-top:8px}.category-reassign select{max-width:100%;min-width:180px}.chip-type{display:block;font-size:10px;color:var(--muted);margin-top:2px;overflow-wrap:anywhere}
 </style>
 </head>
 <body>
@@ -31,22 +36,34 @@
 <div class="stat"><span>Credits at 70% or above</span><strong id="credits70">—</strong><small id="credits-detail">Includes the project</small></div>
 <div class="stat"><span>Completed module inputs</span><strong id="completed">0 / 9</strong><small id="structure">180 credits · project weight 33.33%</small></div>
 </div>
-<section class="panel" aria-labelledby="target-heading">
-<div class="row"><div><h2 id="target-heading">What marks do I need?</h2><small>Select <b>Vary</b> beside the assessments this calculator may change. Everything else stays fixed.</small></div><div class="actions"><button id="vary-exams">Vary blank exams</button><button id="vary-project">Vary project only</button><button id="vary-clear">Clear Vary</button></div></div>
-<div class="solver-controls">
-<label class="field">Calculate for<select id="scope"></select></label>
-<label class="field">Target<select id="target"></select></label>
-<label class="field" id="custom-field" hidden>Module target %<input id="custom-target" type="number" min="0" max="100" step="0.01" value="70"></label>
-<button id="apply" class="primary" disabled>Apply required marks</button>
+<section class="panel" aria-labelledby="overview-heading">
+<div class="row"><div><h2 id="overview-heading">Module overview</h2><small>Your modules, assessment weights, and current marks at a glance.</small></div></div>
+<div class="forecast-controls">
+<label class="field">Overall MSc target<select id="degree-target"><option value="pass">Pass</option><option value="merit">Merit</option><option value="distinction">Distinction</option></select></label>
+<label class="field">Assume blanks in OTHER modules score %<input id="other-assumption" type="number" min="0" max="100" step="0.01" value="70"></label>
 </div>
-<div class="solver-result" id="solver-box">
-<div id="solver-message" role="status" aria-live="polite"></div>
-<div class="assessment-map-head"><div><h3>Your assessment map</h3><small id="map-count"></small></div><div class="map-legend" aria-label="Assessment status legend"><span><i class="map-dot" aria-hidden="true"></i>Needs a mark</span><span><i class="map-dot fixed" aria-hidden="true"></i>Fixed mark</span><span><i class="map-dot vary" aria-hidden="true"></i>Vary</span></div></div>
+<p class="forecast-explainer">Each card is a separate what-if for the overall MSc target. Entered marks stay fixed; blanks within that module receive the same required percentage. For a completed module, its exam mark is the adjustable what-if instead. The project mark can also be estimated.</p>
+<div id="forecast-status" class="forecast-status" aria-label="Overall MSc target progress"></div>
+<div id="forecast-context" class="forecast-context"></div>
+<div class="assessment-overview" id="overview-box">
+<div id="overview-message" role="status" aria-live="polite"></div>
+<div class="assessment-map-head"><small id="map-count"></small><div class="map-legend" aria-label="Assessment status legend"><span><i class="map-dot" aria-hidden="true"></i>Missing mark</span><span><i class="map-dot entered" aria-hidden="true"></i>Mark entered</span><span><i class="map-dot estimated" aria-hidden="true"></i>Estimated</span></div></div>
 <div id="assessment-map" class="assessment-map" aria-label="Modules and their assessment categories"></div>
-<small class="map-help">Click an assessment to toggle Vary. Edit marks and weights in the module list below.</small>
+<small class="map-help">Estimates are independent alternatives; do not combine different cards' suggested scores into a single forecast. Edit inputs below to update everything live. A 0% estimate is not permission to skip an assessment.</small>
 </div>
-<small>Selected assessments receive the same percentage; other combinations may also work. A 0% requirement is not permission to skip an assessment.</small>
 </section>
+<details class="panel category-manager" id="category-manager" style="overflow-wrap:anywhere">
+<summary>Manage assessment categories <small id="category-count"></small></summary>
+<p class="muted">Add your own categories, rename them, or remove them. Mark a category as an exam if it should be used for completed-module exam estimates. Renaming updates its dropdown entries and assessments; custom assessment labels stay as you wrote them.</p>
+<form id="category-add-form" class="category-add">
+<label class="field">New category name<input id="new-category-name" type="text" maxlength="80" placeholder="e.g. Lab report or presentation" required></label>
+<label class="category-exam"><input id="new-category-exam" type="checkbox">Treat as exam</label>
+<button type="submit" class="primary">+ Add category</button>
+</form>
+<div id="category-rows" class="category-rows"></div>
+<div id="category-reassign" class="category-reassign" hidden></div>
+<p id="category-feedback" class="category-message" role="status"></p>
+</details>
 <div class="section-head"><div><h2>Modules & assessments</h2><small>Edit marks as “achieved out of available.” Each module’s weights must total 100%.</small></div><div class="toolbar"><button id="delete-selected" class="danger" disabled>Delete selected (0)</button><button id="undo" hidden>Undo deletion</button><button id="add-module" class="primary">+ Add module</button></div></div>
 <div id="feedback" role="status"></div>
 <div id="modules"></div>
@@ -65,10 +82,12 @@
 'use strict';
 const Grade = (() => {
   const RULES = Object.freeze({pass:5000, condone:4000, maxCondonedCredits:30, distinction:6950, distinctionAlternative:6850, merit:5950, meritAlternative:5850});
-  const types = ['Exam','Coursework','Group activity','In-class activity','Dissertation/project','Other'];
+  const types = Object.freeze(['Exam','Coursework','Group activity','In-class activity','Dissertation/project']);
   let nextId = 0;
   const id = () => 'g' + Date.now().toString(36) + (++nextId).toString(36) + Math.random().toString(36).slice(2,8);
-  const assessment = (type='Exam',weight=100) => ({id:id(),label:type,type,weight,score:null,max:100,requirement:'unknown',minimum:50});
+  const assessment = (type='Exam',weight=100,isExam=type==='Exam') => ({id:id(),label:type,type,isExam,weight,score:null,max:100,requirement:'unknown',minimum:50});
+  const defaultCategories = () => types.map(name=>({id:id(),name,isExam:name==='Exam'}));
+  const isExamAssessment = a => typeof a.isExam==='boolean'?a.isExam:a.type==='Exam';
   function defaults() {
     const specs = [
       ['Supervised Learning','COMP0078',[['Exam',86],['Group activity',14]]],
@@ -81,7 +100,35 @@ const Grade = (() => {
       ['Emerging Topics in Machine Learning','COMP0168',[['In-class activity',25],['Group activity',35],['Coursework',40]]],
       ['MSc Machine Learning Project','COMP0091',[['Dissertation/project',100]]]
     ];
-    return {version:1,modules:specs.map(([name,code,parts],i)=>({id:id(),name,code,credits:i===8?60:15,kind:i===8?'project':'taught',condonement:'unknown',assessments:parts.map(([type,w])=>assessment(type,w))})),settings:{scope:'degree',target:'distinction',customTarget:70,vary:[]}};
+    return {version:1,categories:defaultCategories(),modules:specs.map(([name,code,parts],i)=>({id:id(),name,code,credits:i===8?60:15,kind:i===8?'project':'taught',condonement:'unknown',assessments:parts.map(([type,w])=>assessment(type,w))})),forecast:{target:'distinction',assumption:70}};
+  }
+  function categoryName(doc,value,exceptId=null) {
+    const name=typeof value==='string'?value.trim():'';
+    if(!name||name.length>80) throw new Error('Enter a category name from 1 to 80 characters.');
+    if(doc.categories.some(c=>c.id!==exceptId&&c.name.toLowerCase()===name.toLowerCase())) throw new Error('A category with that name already exists.');
+    return name;
+  }
+  function addCategory(doc,value,isExam=false) {
+    if(doc.categories.length>=100) throw new Error('Use no more than 100 categories.');
+    const category={id:id(),name:categoryName(doc,value),isExam:!!isExam};
+    doc.categories.push(category);return category;
+  }
+  function updateCategory(doc,categoryId,value,isExam=false) {
+    const category=doc.categories.find(c=>c.id===categoryId);
+    if(!category) throw new Error('Category no longer exists.');
+    const name=categoryName(doc,value,categoryId),oldName=category.name;
+    category.name=name;category.isExam=!!isExam;
+    doc.modules.forEach(m=>m.assessments.forEach(a=>{if(a.type===oldName){a.type=name;a.isExam=category.isExam;if(a.label===oldName)a.label=name;}}));
+    return category;
+  }
+  function removeCategory(doc,categoryId,replacementId=null) {
+    const category=doc.categories.find(c=>c.id===categoryId);
+    if(!category) throw new Error('Category no longer exists.');
+    const assessments=doc.modules.flatMap(m=>m.assessments).filter(a=>a.type===category.name);
+    const replacement=doc.categories.find(c=>c.id===replacementId&&c.id!==categoryId);
+    if(assessments.length&&!replacement) throw new Error('Choose a replacement category for the existing assessments.');
+    assessments.forEach(a=>{a.type=replacement.name;a.isExam=replacement.isExam;if(a.label===category.name)a.label=replacement.name;});
+    doc.categories=doc.categories.filter(c=>c.id!==categoryId);
   }
   // Decimal rational arithmetic: round only at the points required by the rules.
   function ratio(value) {
@@ -121,7 +168,7 @@ const Grade = (() => {
     let low=0n, high=0n, complete=true;
     const failed=[];
     const parts=m.assessments.map(a=>{
-      const p=overrides.has(a.id)?overrides.get(a.id):(a.score===null?null:percent(a.score,a.max));
+      const p=overrides.has(a.id)?overrides.get(a.id):a.score===null?null:percent(a.score,a.max);
       const weight=BigInt(scaled(a.weight));
       low+=BigInt(p??0)*weight; high+=BigInt(p??10000)*weight;
       if(p===null) complete=false;
@@ -135,7 +182,7 @@ const Grade = (() => {
     if(mark>=RULES.merit || (mark>=RULES.meritAlternative && scaled(c60)*2>=scaled(total))) return 'Merit';
     return 'Pass';
   }
-  function evaluate(modules,overrides=new Map()) {
+  function evaluate(modules, overrides=new Map()) {
     const results=modules.map(m=>moduleResult(m,overrides));
     const invalid=results.filter(r=>r.errors.length);
     const total=modules.reduce((sum,m)=>sum+(numeric(m.credits,.01,10000)?scaled(m.credits):0),0);
@@ -165,52 +212,81 @@ const Grade = (() => {
     if(mark<RULES.pass) reasons.push('The overall average must reach 50% for an MSc award.');
     return {...common,complete:true,mark,c60,c70,band:band(mark,c60,c70,total/100),eligible:reasons.length===0,reasons,conditional,condoned:condoned/100};
   }
-  function solve(doc) {
-    const s=doc.settings, chosen=s.scope==='degree'?doc.modules:doc.modules.filter(m=>m.id===s.scope);
-    if(!chosen.length) return {status:'invalid',message:'Add a module to begin.'};
-    const invalid=chosen.flatMap(m=>errors(m).map(e=>(m.name||'Module')+': '+e));
-    if(invalid.length) return {status:'invalid',message:invalid.join('\n')};
-    const ids=new Set(s.vary), selected=chosen.flatMap(m=>m.assessments.filter(a=>ids.has(a.id)));
-    const target=s.scope==='degree'?null:Number(s.target==='custom'?s.customTarget:s.target);
-    if(target!==null && ((s.target==='custom'&&s.customTarget===null)||!numeric(target,0,100)||!twoDecimals(target))) return {status:'invalid',message:'Enter a module target from 0 to 100%, with at most 2 decimals.'};
-    const missing=chosen.flatMap(m=>m.assessments.filter(a=>a.score===null&&!ids.has(a.id)).map(a=>(m.name||'Module')+' / '+(a.label||'Assessment')));
-    if(missing.length) return {status:'missing',message:'Enter a mark or select Vary for:\n'+missing.join('\n')};
-    const ranks={Pass:1,Merit:2,Distinction:3};
-    const needed=ranks[{pass:'Pass',merit:'Merit',distinction:'Distinction'}[s.target]];
-    const inspect=overrides=>s.scope==='degree'?evaluate(chosen,overrides):moduleResult(chosen[0],overrides);
-    const passes=r=>s.scope==='degree'?r.complete&&r.eligible&&ranks[r.band]>=needed:r.complete&&!r.failed.length&&r.mark>=scaled(target);
-    const current=inspect(new Map());
-    if(!selected.length) return {status:passes(current)?'achieved':'select',message:passes(current)?'Target already achieved with the entered scenario marks.':'Select Vary beside at least one assessment to calculate its required mark.',evaluation:current};
-    const candidate=p=>inspect(new Map(selected.map(a=>[a.id,p])));
-    const top=candidate(10000);
-    if(!passes(top)) return {status:'impossible',message:'Impossible with the current fixed marks, even with 100% in every selected assessment.'+(top.reasons?.length?'\n'+top.reasons.join('\n'):top.failed?.length?'\n'+top.failed.join('\n'):''),evaluation:top};
+  const rank = Object.freeze({Pass:1,Merit:2,Distinction:3});
+  const targetNames = Object.freeze({pass:'Pass',merit:'Merit',distinction:'Distinction'});
+  const validTarget = target => typeof target==='string'&&Object.hasOwn(targetNames,target);
+  const validAssumption = p => numeric(p,0,100)&&twoDecimals(p);
+  const meets = (r,target) => !!(r.complete&&r.eligible&&rank[r.band]>=rank[targetNames[target]]);
+  function forecast(modules,assumption) {
+    const current=evaluate(modules);
+    if(current.invalid.length||!modules.length) return {status:'invalid',evaluation:current};
+    if(current.complete) return {status:'current',evaluation:current};
+    if(!validAssumption(assumption)) return {status:'assumption',evaluation:current};
+    const overrides=new Map(modules.flatMap(m=>m.assessments.filter(a=>a.score===null).map(a=>[a.id,scaled(assumption)])));
+    return {status:'projected',evaluation:evaluate(modules,overrides)};
+  }
+  function estimateModule(modules,moduleId,target,assumption) {
+    if(!validTarget(target)) return {status:'invalid',message:'Choose a valid MSc target.'};
+    const current=evaluate(modules), m=modules.find(m=>m.id===moduleId);
+    if(!m||current.invalid.length||!modules.length) return {status:'invalid',message:'Fix invalid module inputs to calculate estimates.'};
+    const blanks=m.assessments.filter(a=>a.score===null);
+    const mode=blanks.length?'blanks':m.kind==='project'?'project':'exam';
+    const adjustable=blanks.length?blanks:m.kind==='project'?m.assessments:m.assessments.filter(isExamAssessment);
+    const otherBlanks=modules.filter(other=>other.id!==m.id).flatMap(other=>other.assessments.filter(a=>a.score===null));
+    if(otherBlanks.length&&!validAssumption(assumption)) return {status:'assumption',message:'Enter an assumed score from 0 to 100% for blanks in other modules.'};
+    const baseline=new Map(otherBlanks.map(a=>[a.id,scaled(assumption)]));
+    const context={mode,assessmentIds:adjustable.map(a=>a.id),assumptionUsed:otherBlanks.length>0};
+    if(!adjustable.length) return {...context,status:'fixed',evaluation:evaluate(modules,baseline),message:'All marks entered. No exam to adjust in this module.'};
+    const candidate=p=>{
+      const overrides=new Map(baseline);
+      adjustable.forEach(a=>overrides.set(a.id,p));
+      return evaluate(modules,overrides);
+    };
+    const maximum=candidate(10000);
+    if(!meets(maximum,target)) return {...context,status:'impossible',evaluation:maximum,message:'Even 100% here cannot reach '+targetNames[target]+' with the other marks held at their entered or assumed values.'};
     let low=0,high=10000;
-    while(low<high) {const middle=Math.floor((low+high)/2);if(passes(candidate(middle))) high=middle;else low=middle+1;}
-    const result=candidate(low),conditional=s.scope==='degree'?result.conditional:result.unknown;
-    return {status:'solution',percentage:low,ids:selected.map(a=>a.id),evaluation:result,conditional,alreadyAchieved:passes(current),message:(low/100).toFixed(2)+'% in each of '+selected.length+' selected assessment'+(selected.length===1?'':'s')+'.\n'+(s.scope==='degree'?'Final mark '+(result.mark/100).toFixed(2)+'% · '+result.band+(result.condoned?' · '+result.condoned+' credits require condonement':''):'Module mark '+(result.mark/100).toFixed(2)+'%')+(conditional?' · conditional on unconfirmed requirements.':'.')+(passes(current)?'\nYour entered scenario already meets this target.':'')};
+    while(low<high) {const middle=Math.floor((low+high)/2);if(meets(candidate(middle),target))high=middle;else low=middle+1;}
+    return {...context,status:'needed',percentage:low,evaluation:candidate(low)};
   }
   function assertDocument(d) {
     const fail=()=>{throw new Error('Invalid calculator JSON. Check its version, fields, IDs and numeric values.');};
-    if(!d||d.version!==1||!Array.isArray(d.modules)||d.modules.length>200||!d.settings) fail();
+    if(!d||d.version!==1||!Array.isArray(d.modules)||d.modules.length>200) fail();
     const ids=new Set();
     const text=v=>typeof v==='string'&&v.length<=500;
     const checkId=v=>{if(!text(v)||!v||v==='degree'||ids.has(v)) fail();ids.add(v);};
     const optional=(v,min,max)=>v===null||numeric(v,min,max);
+    const legacy=d.categories===undefined;
+    if(!legacy&&(!Array.isArray(d.categories)||d.categories.length>100)) fail();
+    const categories=legacy?defaultCategories():d.categories.map(c=>c&&({...c}));
+    const byName=new Map();
+    for(const c of categories) {
+      if(!c||typeof c.name!=='string'||!c.name.trim()||c.name!==c.name.trim()||c.name.length>80||typeof c.isExam!=='boolean'||byName.has(c.name.toLowerCase())) fail();
+      checkId(c.id);byName.set(c.name.toLowerCase(),c);
+    }
+    const modules=[];
     for(const m of d.modules) {
       if(!m||!text(m.name)||!text(m.code)||!['taught','project'].includes(m.kind)||!['unknown','yes','must'].includes(m.condonement)||!optional(m.credits,.01,10000)||!Array.isArray(m.assessments)||m.assessments.length>100) fail();
       checkId(m.id);
+      const assessments=[];
       for(const a of m.assessments) {
-        if(!a||!text(a.label)||!types.includes(a.type)||!optional(a.weight,0,100)||!optional(a.score,0,1e9)||!optional(a.max,Number.MIN_VALUE,1e9)||!optional(a.minimum,0,100)||!['unknown','none','must'].includes(a.requirement)) fail();
+        if(!a||!text(a.label)||typeof a.type!=='string'||!a.type.trim()||a.type.length>80||!optional(a.weight,0,100)||!optional(a.score,0,1e9)||!optional(a.max,Number.MIN_VALUE,1e9)||!optional(a.minimum,0,100)||!['unknown','none','must'].includes(a.requirement)) fail();
         if(a.score!==null&&a.max!==null&&a.score>a.max) fail();
         checkId(a.id);
+        const name=legacy&&a.type==='Other'?'Custom assessment':a.type.trim();
+        let category=byName.get(name.toLowerCase());
+        if(!category) {
+          if(!legacy||categories.length>=100) fail();
+          category={id:id(),name,isExam:name==='Exam'};checkId(category.id);categories.push(category);byName.set(name.toLowerCase(),category);
+        }
+        assessments.push({...a,type:category.name,isExam:category.isExam,label:legacy&&a.type==='Other'&&a.label==='Other'?category.name:a.label});
       }
+      modules.push({...m,assessments});
     }
-    const s=d.settings;
-    if(typeof s.scope!=='string'||(s.scope!=='degree'&&!d.modules.some(m=>m.id===s.scope))||!Array.isArray(s.vary)||!s.vary.every(v=>typeof v==='string'&&d.modules.some(m=>m.assessments.some(a=>a.id===v)))||!optional(s.customTarget,0,100)) fail();
-    if(s.scope==='degree'?!['pass','merit','distinction'].includes(s.target):!['50','60','70','custom'].includes(s.target)) fail();
-    return d;
+    const f=d.forecast??{target:'distinction',assumption:70};
+    if(!f||!validTarget(f.target)||!optional(f.assumption,0,100)) fail();
+    return {version:1,categories,modules,forecast:{target:f.target,assumption:f.assumption}};
   }
-  return {RULES,types,id,assessment,defaults,percent,scaled,errors,moduleResult,evaluate,solve,assertDocument};
+  return {RULES,types,id,assessment,defaults,addCategory,updateCategory,removeCategory,percent,scaled,errors,moduleResult,evaluate,forecast,estimateModule,meets,targetNames,assertDocument};
 })();
 </script>
 <script id="grade-ui">
@@ -220,7 +296,7 @@ const Grade = (() => {
   const clone=o=>JSON.parse(JSON.stringify(o));
   const escape=value=>String(value??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
   const fmt=bp=>bp===null||bp===undefined?'—':(bp/100).toFixed(2)+'%';
-  let doc=Grade.defaults(), undo=null, solution=null;
+  let doc=Grade.defaults(), undo=null, pendingCategoryRemoval=null;
   const deleteModules=new Set(),deleteAssessments=new Set();
   let loadWarning='';
   try {const raw=localStorage.getItem(KEY);if(raw) doc=Grade.assertDocument(JSON.parse(raw));} catch(e) {loadWarning='Autosave could not be loaded. Defaults are shown; import a JSON backup if needed.';}
@@ -237,33 +313,93 @@ const Grade = (() => {
   function select(m,a,field,label,values,cls='') {
     return '<select class="'+cls+'" data-mid="'+escape(m.id)+'"'+(a?' data-aid="'+escape(a.id)+'"':'')+' data-field="'+field+'" aria-label="'+escape(label)+'">'+options(values,(a||m)[field])+'</select>';
   }
+  function newAssessment(preferExam=false,weight=0) {
+    const category=(preferExam?doc.categories.find(c=>c.isExam):doc.categories.find(c=>c.name==='Coursework')||doc.categories.find(c=>!c.isExam))||doc.categories[0];
+    return category?Grade.assessment(category.name,weight,category.isExam):null;
+  }
+  function renderCategories() {
+    $('category-count').textContent=doc.categories.length+' available';
+    $('category-rows').innerHTML=doc.categories.map(c=>{
+      const count=doc.modules.reduce((n,m)=>n+m.assessments.filter(a=>a.type===c.name).length,0);
+      return '<div class="category-row" data-category-id="'+escape(c.id)+'"><input class="category-name" data-category-name type="text" maxlength="80" value="'+escape(c.name)+'" aria-label="'+escape(c.name)+' category name"><label class="category-exam"><input data-category-exam type="checkbox"'+(c.isExam?' checked':'')+'>Treat as exam</label><span class="category-usage">'+count+' assessment'+(count===1?'':'s')+'</span><button type="button" class="link-button" data-category-action="save">Save</button><button type="button" class="link-button danger" data-category-action="remove">Remove</button></div>';
+    }).join('')||'<small>No categories yet. Add one above to create assessments.</small>';
+    const removed=doc.categories.find(c=>c.id===pendingCategoryRemoval);
+    $('category-reassign').hidden=!removed;
+    if(removed) {
+      const replacements=doc.categories.filter(c=>c.id!==removed.id);
+      $('category-reassign').innerHTML='<p>Remove <strong>'+escape(removed.name)+'</strong>? Its existing assessments and marks will be kept. Choose their replacement category.</p>'+(replacements.length?'':'<p>Add another category first, or delete the assessments that use this category.</p>')+'<label class="field">Move existing assessments to<select id="category-replacement">'+options([['','Choose a replacement'],...replacements.map(c=>[c.id,c.name])],'')+'</select></label><div class="actions"><button type="button" id="confirm-category-remove" class="danger"'+(!replacements.length?' disabled':'')+'>Remove category</button><button type="button" id="cancel-category-remove">Cancel</button></div>';
+    } else {pendingCategoryRemoval=null;$('category-reassign').innerHTML='';}
+  }
   function assessmentHTML(m,a) {
     const name=(m.name||'Module')+' / '+(a.label||'Assessment');
-    return '<tr><td><input type="checkbox" data-action="select-assessment" data-aid="'+escape(a.id)+'" aria-label="Select '+escape(name)+' for deletion"'+(deleteAssessments.has(a.id)?' checked':'')+'></td><td>'+input(m,a,'label',name+' label',{type:'text',className:'assessment-label'})+select(m,a,'type',name+' category',Grade.types,'assessment-type')+'</td><td>'+input(m,a,'weight',name+' weight percent',{max:'100',step:'.01'})+'</td><td>'+input(m,a,'score',name+' achieved marks')+'</td><td>'+input(m,a,'max',name+' available marks',{min:'0.000000001'})+'</td><td>'+select(m,a,'requirement',name+' separate-pass requirement',[['unknown','Unconfirmed'],['none','No separate pass'],['must','Must pass']],'requirement')+'<label class="minimum" id="minimum-'+escape(a.id)+'"'+(a.requirement==='must'?'':' hidden')+'>Min % '+input(m,a,'minimum',name+' minimum percent',{max:'100',step:'.01'})+'</label></td><td><input type="checkbox" data-action="vary" data-aid="'+escape(a.id)+'" aria-label="Vary '+escape(name)+'"'+(doc.settings.vary.includes(a.id)?' checked':'')+'></td><td class="assessment-result" id="assessment-'+escape(a.id)+'">—</td><td><button class="link-button danger" data-action="delete-assessment" data-mid="'+escape(m.id)+'" data-aid="'+escape(a.id)+'" aria-label="Delete '+escape(name)+'">Delete</button></td></tr>';
+    return '<tr><td><input type="checkbox" data-action="select-assessment" data-aid="'+escape(a.id)+'" aria-label="Select '+escape(name)+' for deletion"'+(deleteAssessments.has(a.id)?' checked':'')+'></td><td>'+input(m,a,'label',name+' label',{type:'text',className:'assessment-label'})+select(m,a,'type',name+' category',doc.categories.map(c=>c.name),'assessment-type')+'</td><td>'+input(m,a,'weight',name+' weight percent',{max:'100',step:'.01'})+'</td><td>'+input(m,a,'score',name+' achieved marks')+'</td><td>'+input(m,a,'max',name+' available marks',{min:'0.000000001'})+'</td><td>'+select(m,a,'requirement',name+' separate-pass requirement',[['unknown','Unconfirmed'],['none','No separate pass'],['must','Must pass']],'requirement')+'<label class="minimum" id="minimum-'+escape(a.id)+'"'+(a.requirement==='must'?'':' hidden')+'>Min % '+input(m,a,'minimum',name+' minimum percent',{max:'100',step:'.01'})+'</label></td><td class="assessment-result" id="assessment-'+escape(a.id)+'">—</td><td><button class="link-button danger" data-action="delete-assessment" data-mid="'+escape(m.id)+'" data-aid="'+escape(a.id)+'" aria-label="Delete '+escape(name)+'">Delete</button></td></tr>';
   }
   function renderModules() {
-    $('modules').innerHTML=doc.modules.length?doc.modules.map(m=>'<article class="module" aria-label="'+escape(m.name||'Unnamed module')+'"><div class="module-head"><label class="field module-name">Module name'+input(m,null,'name','Module name',{type:'text'})+'</label><label class="field">Code'+input(m,null,'code','Module code',{type:'text',className:'code'})+'</label><label class="field">Credits'+input(m,null,'credits',(m.name||'Module')+' credits',{min:'.01',step:'.01'})+'</label><label class="field">Type'+select(m,null,'kind',(m.name||'Module')+' type',[['taught','Taught'],['project','Project / dissertation']])+'</label><label class="field">Condonement'+select(m,null,'condonement',(m.name||'Module')+' condonement',[['unknown','Unconfirmed'],['yes','Condonable'],['must','Must pass module']])+'</label></div><div class="module-result" id="module-'+escape(m.id)+'"></div><div class="table-wrap"><table><thead><tr><th><span class="sr-only">Delete selection</span></th><th>Assessment & category</th><th>Weight %</th><th>Achieved</th><th>Out of</th><th>Separate pass</th><th>Vary</th><th>Result</th><th><span class="sr-only">Actions</span></th></tr></thead><tbody>'+m.assessments.map(a=>assessmentHTML(m,a)).join('')+'</tbody></table></div><div class="module-footer"><label class="selection-label"><input type="checkbox" data-action="select-module" data-mid="'+escape(m.id)+'"'+(deleteModules.has(m.id)?' checked':'')+'>Select module for deletion</label><div class="actions"><button class="link-button" data-action="add-assessment" data-mid="'+escape(m.id)+'">+ Assessment</button><button class="link-button danger" data-action="delete-module" data-mid="'+escape(m.id)+'">Delete module</button></div></div></article>').join(''):'<div class="panel empty">No modules yet. Add a module or reset to your course defaults.</div>';
-    renderControls();refresh();
+    $('degree-target').value=doc.forecast.target;
+    $('other-assumption').value=doc.forecast.assumption??'';
+    $('modules').innerHTML=doc.modules.length?doc.modules.map(m=>'<article class="module" aria-label="'+escape(m.name||'Unnamed module')+'"><div class="module-head"><label class="field module-name">Module name'+input(m,null,'name','Module name',{type:'text'})+'</label><label class="field">Code'+input(m,null,'code','Module code',{type:'text',className:'code'})+'</label><label class="field">Credits'+input(m,null,'credits',(m.name||'Module')+' credits',{min:'.01',step:'.01'})+'</label><label class="field">Type'+select(m,null,'kind',(m.name||'Module')+' type',[['taught','Taught'],['project','Project / dissertation']])+'</label><label class="field">Condonement'+select(m,null,'condonement',(m.name||'Module')+' condonement',[['unknown','Unconfirmed'],['yes','Condonable'],['must','Must pass module']])+'</label></div><div class="module-result" id="module-'+escape(m.id)+'"></div><div class="table-wrap"><table><thead><tr><th><span class="sr-only">Delete selection</span></th><th>Assessment & category</th><th>Weight %</th><th>Achieved</th><th>Out of</th><th>Separate pass</th><th>Result</th><th><span class="sr-only">Actions</span></th></tr></thead><tbody>'+m.assessments.map(a=>assessmentHTML(m,a)).join('')+'</tbody></table></div><div class="module-footer"><label class="selection-label"><input type="checkbox" data-action="select-module" data-mid="'+escape(m.id)+'"'+(deleteModules.has(m.id)?' checked':'')+'>Select module for deletion</label><div class="actions"><button class="link-button" data-action="add-assessment" data-mid="'+escape(m.id)+'">+ Assessment</button><button class="link-button danger" data-action="delete-module" data-mid="'+escape(m.id)+'">Delete module</button></div></div></article>').join(''):'<div class="panel empty">No modules yet. Add a module or reset to your course defaults.</div>';
+    $('modules').querySelectorAll('[data-action="add-assessment"]').forEach(button=>button.disabled=!doc.categories.length);
+    renderCategories();
+    refresh();
   }
-  function renderControls() {
-    $('scope').innerHTML=options([['degree','Overall MSc'],...doc.modules.map(m=>[m.id,m.name||'Unnamed module'])],doc.settings.scope);
-    $('target').innerHTML=options(doc.settings.scope==='degree'?[['pass','Pass'],['merit','Merit'],['distinction','Distinction']]:[['50','50% module average'],['60','60% module average'],['70','70% module average'],['custom','Custom module average']],doc.settings.target);
-    $('custom-field').hidden=doc.settings.scope==='degree'||doc.settings.target!=='custom';
-    $('custom-target').value=doc.settings.customTarget??'';
+  function renderForecastStatus() {
+    const f=Grade.forecast(doc.modules,doc.forecast.assumption), r=f.evaluation;
+    const available=f.status==='current'||f.status==='projected';
+    const projected=f.status==='projected';
+    $('forecast-status').innerHTML=Object.entries(Grade.targetNames).map(([key,name])=>{
+      const met=available&&Grade.meets(r,key);
+      const label=!available?'Unavailable':(projected?'Projected ':'')+(met?'met':'not met');
+      return '<span class="rank-badge '+(!available?'':met?'met':'not-met')+'" data-rank="'+key+'" data-met="'+met+'" aria-label="'+name+': '+label+(doc.forecast.target===key?'; selected target':'')+'">'+name+(doc.forecast.target===key?' (target)':'')+' · '+label+'</span>';
+    }).join('');
+    if(!available) {
+      $('forecast-context').className='forecast-context forecast-error';
+      $('forecast-context').textContent=f.status==='assumption'?'Enter an assumed percentage from 0 to 100 (up to two decimals) for unfinished assessments in other modules.':'Fix invalid module inputs before estimating the overall MSc target.';
+      return;
+    }
+    $('forecast-context').className='forecast-context';
+    $('forecast-context').textContent=(projected?'Baseline projection: all blank assessments at '+doc.forecast.assumption+'%. ':'Entered marks: ')+fmt(r.mark)+' overall · '+(r.eligible?r.band:'Award requirements unmet')+'.'+(r.reasons.length?'\n'+r.reasons[0]:'')+(r.conditional?'\nConditional on unconfirmed separate-pass or condonement requirements.':'')+(r.custom?'\nCustom credit/project structure: reference classifications only.':'');
+  }
+  function estimateHTML(m,e) {
+    const title=escape(Grade.targetNames[doc.forecast.target]);
+    if(e.status==='invalid'||e.status==='assumption') return '<div class="estimate unavailable"><strong>Estimate unavailable</strong><span>'+escape(e.message)+'</span></div>';
+    if(e.status==='fixed') return '<div class="estimate"><strong>All marks entered</strong><span>'+escape(e.message)+'</span><span class="estimate-meta">This module contributes to the overall MSc result; it has no exam mark to adjust.</span></div>';
+    if(e.status==='impossible') return '<div class="estimate unavailable"><strong>'+title+' not achievable by adjusting this module alone</strong><span>'+escape(e.message)+'</span><span class="estimate-meta">With 100% here: '+fmt(e.evaluation.mark)+' overall'+(e.evaluation.eligible?' · '+escape(e.evaluation.band):' · award requirements unmet')+'.</span>'+(e.evaluation.reasons.length?'<span class="estimate-meta">'+escape(e.evaluation.reasons[0])+'</span>':'')+'</div>';
+    const names=e.mode==='blanks'?(e.assessmentIds.length===1?'Blank assessment needed':'Each blank assessment needs'):e.mode==='project'?'Project needed':e.assessmentIds.length===1?'Exam needed':'Each exam needs';
+    const lines=e.assessmentIds.map(id=>{
+      const a=m.assessments.find(a=>a.id===id);
+      const raw=e.percentage===10000?a.max:Number((a.max*e.percentage/10000).toPrecision(10));
+      const actual=a.score===null?null:Grade.percent(a.score,a.max);
+      const difference=actual===null?null:actual-e.percentage;
+      const current=actual===null?'':' Entered '+fmt(actual)+(difference===0?' matches this requirement.':' ('+(Math.abs(difference)/100).toFixed(2)+' percentage points '+(difference>0?'above':'below')+' needed).');
+      return '<span class="estimate-line">'+escape(a.label||a.type)+': ≈'+escape(raw)+' / '+escape(a.max)+'.'+escape(current)+'</span>';
+    }).join('');
+    const moduleMark=e.evaluation.results.find(r=>r.module.id===m.id).mark;
+    return '<div class="estimate'+(e.evaluation.condoned?' warning':'')+'"><strong>'+names+': '+fmt(e.percentage)+'</strong>'+lines+'<span class="estimate-meta">This what-if: module '+fmt(moduleMark)+' · MSc '+fmt(e.evaluation.mark)+' ('+escape(e.evaluation.band)+').'+(e.evaluation.conditional?' Conditional.':'')+'</span><span class="estimate-meta">'+(e.assumptionUsed?'Other modules’ blanks assumed at '+escape(doc.forecast.assumption)+'%.':'Other modules use their entered marks.')+'</span>'+(e.evaluation.condoned?'<span class="estimate-meta">'+e.evaluation.condoned+' taught credits require condonement.</span>':'')+'</div>';
   }
   function renderAssessmentMap(result) {
-    const varying=new Set(doc.settings.vary), scope=doc.settings.scope;
     const assessmentCount=doc.modules.reduce((count,m)=>count+m.assessments.length,0);
-    $('map-count').textContent=doc.modules.length+' modules · '+assessmentCount+' assessments · '+varying.size+' selected to vary';
+    const enteredCount=doc.modules.reduce((count,m)=>count+m.assessments.filter(a=>a.score!==null).length,0);
+    $('map-count').textContent=doc.modules.length+' modules · '+assessmentCount+' assessments';
+    $('overview-message').textContent=result.invalid.length?'Check invalid inputs in the module list below.':enteredCount+' of '+assessmentCount+' assessment marks entered.'+(enteredCount<assessmentCount?' Blank marks are estimated below; entered marks stay fixed.':' Completed modules show separate exam/project what-ifs below.');
     $('assessment-map').innerHTML=result.results.map(r=>{
-      const m=r.module, outside=scope!=='degree'&&scope!==m.id;
+      const m=r.module;
+      const estimate=Grade.estimateModule(doc.modules,m.id,doc.forecast.target,doc.forecast.assumption);
+      const weights=m.assessments.map(a=>a.weight);
+      let weightWarning='';
+      if(weights.some(w=>typeof w!=='number'||!Number.isFinite(w)||w<0)) {
+        weightWarning='<strong>Weight total incomplete</strong><span>Enter a valid, non-negative weight for every assessment.</span>';
+      } else {
+        const total=weights.reduce((sum,w)=>sum+Grade.scaled(w),0);
+        if(total!==10000) weightWarning='<strong>Total weight: '+(total/100).toFixed(2)+'%</strong><span>'+(Math.abs(total-10000)/100).toFixed(2)+' percentage points '+(total>10000?'over':'below')+' 100%. '+(total>10000?'Reduce':'Increase')+' assessment weights to total 100%.</span>';
+      }
       const chips=m.assessments.map(a=>{
-        const part=r.parts.find(p=>p.id===a.id), selected=varying.has(a.id);
-        const state=selected?'vary':a.score===null?'missing':'fixed';
-        const detail=selected?(outside?'Selected · outside this target':'Vary · solver sets this mark'):r.errors.length?'Check module inputs':a.score===null?'Needs a mark':fmt(part?.percent)+' · fixed';
-        return '<button type="button" class="category-chip '+state+(outside?' outside':'')+'" data-vary-id="'+escape(a.id)+'" aria-pressed="'+selected+'" aria-label="'+escape((m.name||'Unnamed module')+' / '+(a.label||a.type)+': '+detail+'. Toggle Vary')+'"><span class="chip-top"><span class="chip-label">'+escape(a.label||a.type)+'</span><span class="chip-weight">'+escape(a.weight??'—')+'%</span></span><span class="chip-status">'+escape(detail)+'</span></button>';
+        const part=r.parts.find(p=>p.id===a.id);
+        const estimated=a.score===null&&estimate.status==='needed'&&estimate.assessmentIds.includes(a.id);
+        const state=estimated?'estimated':a.score===null?'missing':'entered';
+        const detail=r.errors.length?'Check module inputs':estimated?'Needed: '+fmt(estimate.percentage):a.score===null?'Needs a mark':fmt(part?.percent)+' · entered';
+        return '<div class="category-chip '+state+'" role="group" aria-label="'+escape((a.label||a.type)+': '+detail)+'"><span class="chip-top"><span class="chip-label">'+escape(a.label||a.type)+'</span><span class="chip-weight">'+escape(a.weight??'—')+'%</span></span>'+(a.label&&a.label!==a.type?'<span class="chip-type">'+escape(a.type)+'</span>':'')+'<span class="chip-status">'+escape(detail)+'</span></div>';
       }).join('');
-      return '<section class="map-module'+(scope===m.id?' target-module':'')+'" aria-label="'+escape(m.name||'Unnamed module')+' assessments"><div class="map-module-head"><div><h4>'+escape(m.name||'Unnamed module')+'</h4><small>'+escape(m.code?m.code+' · ':'')+escape(m.credits??'—')+' credits'+(outside?' · outside target':'')+'</small></div><span class="map-module-mark">'+(r.errors.length?'Check inputs':fmt(r.mark))+'</span></div><div class="category-chips">'+(chips||'<small>No assessments yet</small>')+'</div></section>';
+      return '<section class="map-module'+(weightWarning?' has-weight-warning':'')+'" aria-label="'+escape(m.name||'Unnamed module')+' assessments"><div class="map-module-head"><div><h4>'+escape(m.name||'Unnamed module')+'</h4><small>'+escape(m.code?m.code+' · ':'')+escape(m.credits??'—')+' credits</small></div><span class="map-module-mark">'+(r.errors.length?'Check inputs':fmt(r.mark))+'</span></div><div class="category-chips">'+(chips||'<small>No assessments yet</small>')+'</div>'+(weightWarning?'<p class="weight-warning">'+weightWarning+'</p>':estimateHTML(m,estimate))+'</section>';
     }).join('')||'<small>Add a module to build your assessment map.</small>';
   }
   function refresh() {
@@ -284,38 +420,26 @@ const Grade = (() => {
     $('overall').textContent=fmt(result.mark);
     $('overall-detail').textContent=result.invalid.length?'Fix invalid module inputs':!doc.modules.length?'Add modules to begin':!result.complete?'Possible '+fmt(result.low)+'–'+fmt(result.high):'Credit-weighted mean · all modules';
     $('classification').textContent=result.invalid.length?'Invalid inputs':!result.complete?'Incomplete':!result.eligible?'Award unmet':result.band;
-    $('classification-detail').textContent=result.complete?(result.custom?'Custom scenario · reference only':result.conditional?'Conditional on unconfirmed requirements':'Reference result · check programme rules'):'Complete or solve for missing marks';
+    $('classification-detail').textContent=result.complete?(result.custom?'Custom scenario · reference only':result.conditional?'Conditional on unconfirmed requirements':'Reference result · check programme rules'):'Enter the remaining assessment marks';
     $('credits70').textContent=result.c70+' / '+result.total;
     $('credits-detail').textContent='Half of all credits: '+(result.total/2)+' · ≥60%: '+result.c60;
     $('completed').textContent=result.results.filter(r=>r.complete&&!r.errors.length).length+' / '+doc.modules.length;
     const projectCredits=doc.modules.filter(m=>m.kind==='project').reduce((n,m)=>n+(Number(m.credits)||0),0);
     $('structure').textContent=result.total+' credits · project weight '+(result.total?projectCredits/result.total*100:0).toFixed(2)+'%'+(result.custom?' · custom':'');
-    $('award-note').textContent=result.complete?(result.reasons.length?'Award requirements unmet: '+result.reasons.join(' '):'Scenario meets the configured award checks.'+(result.condoned?' '+result.condoned+' taught credits need condonement.':'')+(result.conditional?' Unconfirmed requirements could change eligibility.':'')):'Fill the remaining marks or use Vary to explore a complete scenario.';
-    solution=Grade.solve(doc);
-    if(solution.status==='missing') {
-      const relevant=doc.modules.filter(m=>doc.settings.scope==='degree'||m.id===doc.settings.scope);
-      const missingCount=relevant.reduce((count,m)=>count+m.assessments.filter(a=>a.score===null&&!doc.settings.vary.includes(a.id)).length,0);
-      $('solver-message').textContent=missingCount+' assessment'+(missingCount===1?' needs':'s need')+' a mark or a Vary selection before this target can be calculated.';
-    } else $('solver-message').textContent=solution.message;
-    $('solver-box').className='solver-result'+(['invalid','impossible'].includes(solution.status)?' error':'');
+    $('award-note').textContent=result.complete?(result.reasons.length?'Award requirements unmet: '+result.reasons.join(' '):'Scenario meets the configured award checks.'+(result.condoned?' '+result.condoned+' taught credits need condonement.':'')+(result.conditional?' Unconfirmed requirements could change eligibility.':'')):'Enter the remaining marks to explore a complete scenario.';
+    renderForecastStatus();
     renderAssessmentMap(result);
-    $('apply').disabled=solution.status!=='solution';
     updateSelection();
   }
   function updateSelection() {
     const count=deleteModules.size+deleteAssessments.size;
     $('delete-selected').textContent='Delete selected ('+count+')';$('delete-selected').disabled=!count;$('undo').hidden=!undo;
   }
-  function cleanSettings() {
-    const ids=new Set(doc.modules.flatMap(m=>m.assessments.map(a=>a.id)));
-    doc.settings.vary=doc.settings.vary.filter(id=>ids.has(id));
-    if(doc.settings.scope!=='degree'&&!doc.modules.some(m=>m.id===doc.settings.scope)) {doc.settings.scope='degree';doc.settings.target='distinction';}
-  }
   function remove(moduleIds,assessmentIds) {
     undo=clone(doc);
     doc.modules=doc.modules.filter(m=>!moduleIds.has(m.id));
     doc.modules.forEach(m=>m.assessments=m.assessments.filter(a=>!assessmentIds.has(a.id)));
-    deleteModules.clear();deleteAssessments.clear();cleanSettings();save();renderModules();
+    deleteModules.clear();deleteAssessments.clear();save();renderModules();
     $('feedback').textContent='Deleted. Undo is available until your next data edit.';
   }
   function dataChanged(structural=false) {
@@ -325,12 +449,16 @@ const Grade = (() => {
     const el=e.target,{mid,aid,field,action}=el.dataset;
     if(action==='select-module') {el.checked?deleteModules.add(mid):deleteModules.delete(mid);updateSelection();return;}
     if(action==='select-assessment') {el.checked?deleteAssessments.add(aid):deleteAssessments.delete(aid);updateSelection();return;}
-    if(action==='vary') {doc.settings.vary=el.checked?[...new Set([...doc.settings.vary,aid])]:doc.settings.vary.filter(id=>id!==aid);save();refresh();return;}
     if(!field) return;
     const m=doc.modules.find(m=>m.id===mid),item=aid?m.assessments.find(a=>a.id===aid):m;
+    const oldType=item.type;
     item[field]=el.type==='number'?(el.value===''?null:Number(el.value)):el.value;
+    if(field==='type') {
+      item.isExam=doc.categories.find(c=>c.name===item.type).isExam;
+      if(item.label===oldType){item.label=item.type;el.closest('tr').querySelector('[data-field="label"]').value=item.label;}
+      renderCategories();
+    }
     if(field==='requirement') $('minimum-'+aid).hidden=item.requirement!=='must';
-    if(field==='name') renderControls();
     dataChanged();
   });
   $('modules').addEventListener('click',e=>{
@@ -338,30 +466,47 @@ const Grade = (() => {
     const {action,mid,aid}=button.dataset;
     if(action==='delete-module') remove(new Set([mid]),new Set());
     if(action==='delete-assessment') remove(new Set(),new Set([aid]));
-    if(action==='add-assessment') {const m=doc.modules.find(m=>m.id===mid);m.assessments.push(Grade.assessment('Coursework',0));dataChanged(true);}
+    if(action==='add-assessment') {const m=doc.modules.find(m=>m.id===mid),a=newAssessment();if(a){m.assessments.push(a);dataChanged(true);}}
   });
-  $('assessment-map').addEventListener('click',e=>{
-    const button=e.target.closest('[data-vary-id]');if(!button)return;
-    const id=button.dataset.varyId;
-    const checkbox=[...$('modules').querySelectorAll('[data-action="vary"]')].find(el=>el.dataset.aid===id);
-    if(checkbox) checkbox.click();
-    [...$('assessment-map').querySelectorAll('[data-vary-id]')].find(el=>el.dataset.varyId===id)?.focus({preventScroll:true});
-  });
-  $('add-module').onclick=()=>{doc.modules.push({id:Grade.id(),name:'New module',code:'',credits:15,kind:'taught',condonement:'unknown',assessments:[Grade.assessment()]});dataChanged(true);};
+  $('add-module').onclick=()=>{const a=newAssessment(true,100);doc.modules.push({id:Grade.id(),name:'New module',code:'',credits:15,kind:'taught',condonement:'unknown',assessments:a?[a]:[]});dataChanged(true);};
   $('delete-selected').onclick=()=>remove(deleteModules,deleteAssessments);
-  $('undo').onclick=()=>{if(!undo)return;doc=undo;undo=null;save();renderModules();$('feedback').textContent='Deletion undone.';};
-  $('scope').onchange=()=>{doc.settings.scope=$('scope').value;doc.settings.target=doc.settings.scope==='degree'?'distinction':'50';renderControls();save();refresh();};
-  $('target').onchange=()=>{doc.settings.target=$('target').value;renderControls();save();refresh();};
-  $('custom-target').oninput=()=>{doc.settings.customTarget=$('custom-target').value===''?null:Number($('custom-target').value);save();refresh();};
-  function vary(ids) {doc.settings.vary=ids;save();renderModules();}
-  $('vary-exams').onclick=()=>vary(doc.modules.flatMap(m=>m.assessments.filter(a=>a.type==='Exam'&&a.score===null).map(a=>a.id)));
-  $('vary-project').onclick=()=>vary(doc.modules.filter(m=>m.kind==='project').flatMap(m=>m.assessments.map(a=>a.id)));
-  $('vary-clear').onclick=()=>vary([]);
-  $('apply').onclick=()=>{
-    if(solution?.status!=='solution')return;
-    const ids=new Set(solution.ids),p=solution.percentage;
-    doc.modules.forEach(m=>m.assessments.forEach(a=>{if(ids.has(a.id))a.score=Number((a.max*p/10000).toPrecision(15));}));
-    dataChanged(true);$('feedback').textContent='Required scenario marks applied. They are hypothetical, not recorded results.';
+  $('undo').onclick=()=>{if(!undo)return;doc=undo;undo=null;save();renderModules();categorySuccess('');$('feedback').textContent='Deletion undone.';};
+  $('degree-target').onchange=()=>{doc.forecast.target=$('degree-target').value;dataChanged();};
+  $('other-assumption').oninput=()=>{doc.forecast.assumption=$('other-assumption').value===''?null:Number($('other-assumption').value);dataChanged();};
+  function categoryError(error) {$('category-feedback').textContent=error.message;$('category-feedback').className='category-message error-text';}
+  function categorySuccess(message) {$('category-feedback').textContent=message;$('category-feedback').className='category-message';}
+  function deleteCategory(categoryId,replacementId=null) {
+    const previous=clone(doc);
+    try {
+      Grade.removeCategory(doc,categoryId,replacementId);undo=previous;pendingCategoryRemoval=null;
+      save();renderModules();categorySuccess('Category removed. Existing assessments and marks were kept.');
+      $('feedback').textContent='Category removed. Undo is available until your next data edit.';
+    } catch(error) {categoryError(error);}
+  }
+  $('category-add-form').onsubmit=e=>{
+    e.preventDefault();
+    try {
+      const category=Grade.addCategory(doc,$('new-category-name').value,$('new-category-exam').checked);
+      $('new-category-name').value='';$('new-category-exam').checked=false;dataChanged(true);
+      categorySuccess('Added '+category.name+'. It is now available in every assessment category dropdown.');
+    } catch(error) {categoryError(error);}
+  };
+  $('category-rows').onclick=e=>{
+    const button=e.target.closest('[data-category-action]');if(!button)return;
+    const row=button.closest('[data-category-id]'),id=row.dataset.categoryId;
+    if(button.dataset.categoryAction==='save') {
+      try {Grade.updateCategory(doc,id,row.querySelector('[data-category-name]').value,row.querySelector('[data-category-exam]').checked);dataChanged(true);categorySuccess('Category updated everywhere it is used.');}
+      catch(error) {categoryError(error);}
+    } else {
+      const category=doc.categories.find(c=>c.id===id);
+      const used=doc.modules.some(m=>m.assessments.some(a=>a.type===category.name));
+      if(used){pendingCategoryRemoval=id;renderCategories();$('category-replacement').focus();}
+      else deleteCategory(id);
+    }
+  };
+  $('category-reassign').onclick=e=>{
+    if(e.target.id==='cancel-category-remove'){pendingCategoryRemoval=null;renderCategories();}
+    if(e.target.id==='confirm-category-remove')deleteCategory(pendingCategoryRemoval,$('category-replacement').value);
   };
   $('export').onclick=()=>{
     try {
@@ -378,13 +523,13 @@ const Grade = (() => {
       if(file.size>2e6) throw new Error('Choose a JSON backup smaller than 2 MB.');
       const imported=Grade.assertDocument(JSON.parse(await file.text()));
       if(!confirm('Replace this scenario with the imported backup? Export first if you want to keep the current one.'))return;
-      doc=imported;undo=null;deleteModules.clear();deleteAssessments.clear();save();renderModules();$('feedback').textContent='Scenario imported.';
+      doc=imported;undo=null;deleteModules.clear();deleteAssessments.clear();$('category-add-form').reset();categorySuccess('');save();renderModules();$('feedback').textContent='Scenario imported.';
     } catch(error) {$('feedback').textContent='Import failed: '+error.message;}
     finally {e.target.value='';}
   };
   $('reset').onclick=()=>{
     if(!confirm('Replace all modules and marks with the blank course defaults? Export first to keep this scenario.'))return;
-    doc=Grade.defaults();undo=null;deleteModules.clear();deleteAssessments.clear();save();renderModules();$('feedback').textContent='Blank course defaults restored.';
+    doc=Grade.defaults();undo=null;deleteModules.clear();deleteAssessments.clear();$('category-add-form').reset();categorySuccess('');save();renderModules();$('feedback').textContent='Blank course defaults restored.';
   };
   renderModules();
 })();
