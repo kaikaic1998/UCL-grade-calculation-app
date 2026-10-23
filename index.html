@@ -1,0 +1,393 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>UCL MSc Grade Calculator</title>
+<style>
+:root{color-scheme:light;--ink:#172a36;--muted:#526674;--line:#dce4e9;--paper:#fff;--wash:#f3f6f8;--accent:#146b60;--soft:#eaf5f1;--danger:#ae3434}
+*{box-sizing:border-box}body{margin:0;background:var(--wash);color:var(--ink);font:15px/1.5 system-ui,-apple-system,"Segoe UI",sans-serif}main{max-width:1240px;margin:auto;padding:32px 24px 56px}h1{font-size:30px;letter-spacing:-1px;margin:3px 0 4px}h2{font-size:19px;margin:0}p{margin:6px 0 12px}.eyebrow{font-size:12px;text-transform:uppercase;letter-spacing:1.8px;color:var(--accent);font-weight:750}.muted,small{color:var(--muted)}small{font-size:12px}header,.row,.section-head{display:flex;align-items:center;justify-content:space-between;gap:12px;flex-wrap:wrap}.actions{display:flex;gap:8px;align-items:center;flex-wrap:wrap}button{border:1px solid var(--line);border-radius:7px;background:white;color:var(--ink);padding:8px 12px;font:inherit;font-size:13px;cursor:pointer}button:hover{border-color:var(--accent);background:var(--soft)}button.primary{background:var(--accent);color:white;border-color:var(--accent)}button:disabled{opacity:.45;cursor:default}button.danger{color:var(--danger)}:focus-visible{outline:3px solid #38a993;outline-offset:2px}input,select{max-width:100%;border:1px solid #c7d2d9;border-radius:6px;background:white;color:var(--ink);padding:7px 8px;font:inherit;font-size:13px}input[type=number]{width:90px}input[type=checkbox]{accent-color:var(--accent);width:17px;height:17px;cursor:pointer}input:invalid{border-color:var(--danger)}label{font-size:13px}.field{display:flex;flex-direction:column;gap:4px}.notice{background:#fff8e9;border:1px solid #ebddba;border-radius:8px;padding:10px 14px;font-size:13px;color:#6a501f;margin:18px 0}.stats{display:grid;grid-template-columns:repeat(4,1fr);gap:12px;margin:20px 0}.stat,.panel,.module{border:1px solid var(--line);background:var(--paper);border-radius:10px}.stat{padding:17px}.stat span{font-size:12px;color:var(--muted);display:block}.stat strong{display:block;font-size:27px;font-weight:700;letter-spacing:-.6px;margin:3px 0;line-height:1.3}.stat strong.compact{font-size:19px}.panel{padding:20px;margin-bottom:20px}.solver-controls{display:flex;align-items:end;gap:12px;flex-wrap:wrap;margin-top:14px}.solver-controls select{min-width:155px}.solver-result{background:var(--soft);border-radius:8px;padding:12px 14px;margin-top:14px;min-height:48px}.solver-result.error{background:#fff1ed;color:#7c3b22}#solver-message{white-space:pre-line;font-size:14px}.section-head{margin:24px 0 12px}.module{margin:12px 0;overflow:hidden}.module-head{padding:14px 16px;background:#fbfcfd;border-bottom:1px solid var(--line);display:flex;gap:12px;align-items:end;flex-wrap:wrap}.module-name{flex:1;min-width:220px}.module-name input{font-weight:650;width:100%;font-size:15px}.code{width:112px}.module-result{padding:9px 16px;display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap;background:#f7faf9;font-size:13px}.module-result strong{font-size:15px}.error-text{color:var(--danger)}.table-wrap{overflow-x:auto}table{border-collapse:collapse;width:100%;min-width:1000px;text-align:left}th{font-size:11px;color:var(--muted);font-weight:650;background:#fff;padding:8px;text-transform:uppercase;letter-spacing:.4px}td{padding:9px 8px;border-top:1px solid #edf0f2;vertical-align:middle;font-size:13px}th:first-child,td:first-child{padding-left:16px;width:42px}td input[type=number]{width:78px}.assessment-label{width:190px;display:block;margin-bottom:4px}.assessment-type{width:190px;font-size:12px;padding:4px 7px;color:var(--muted)}.requirement{width:132px;display:block}.minimum{display:flex;gap:5px;align-items:center;margin-top:4px}.minimum input{width:65px!important}.assessment-result{font-size:12px;min-width:112px}.assessment-result span{display:block;color:var(--muted)}.module-footer{padding:8px 16px;display:flex;justify-content:space-between;gap:10px;align-items:center}.selection-label{display:flex;gap:7px;align-items:center;color:var(--muted);font-size:12px}.toolbar{display:flex;gap:8px;flex-wrap:wrap}.link-button{padding:5px 9px;font-size:12px}details{font-size:13px}summary{cursor:pointer;font-weight:650}details ul{padding-left:20px}a{color:var(--accent)}#feedback{margin:10px 0;font-size:13px;min-height:20px}#save-status{font-size:12px}#award-note{white-space:pre-line;font-size:13px;margin-top:12px}[hidden]{display:none!important}.empty{padding:30px;text-align:center;color:var(--muted)}.sr-only{position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap;border:0}@media(max-width:760px){main{padding:20px 12px}.stats{grid-template-columns:repeat(2,1fr)}h1{font-size:25px}.panel{padding:15px}.module-head{padding:12px}.module-name{min-width:180px}.stat{padding:12px}.solver-controls .field{flex:1;min-width:150px}.solver-controls select{width:100%;min-width:0}}@media(prefers-reduced-motion:no-preference){button{transition:background .15s}}
+</style>
+<style>
+#solver-message{font-weight:600;line-height:1.55;overflow-wrap:anywhere}
+.assessment-map-head{display:flex;align-items:center;justify-content:space-between;gap:8px;flex-wrap:wrap;margin:14px 0 10px;padding-top:12px;border-top:1px solid #cfe3db}
+.assessment-map-head h3{font-size:13px;margin:0}.map-legend{display:flex;gap:12px;flex-wrap:wrap;color:var(--muted);font-size:11px}.map-legend span{display:inline-flex;align-items:center;gap:5px}.map-dot{width:7px;height:7px;display:inline-block;border-radius:50%;background:#b77b1e}.map-dot.fixed{background:#728695}.map-dot.vary{background:var(--accent)}
+.assessment-map{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:9px}.map-module{padding:11px;border:1px solid #d0e3db;border-radius:8px;background:#ffffffb8;min-width:0}.map-module.target-module{border-color:var(--accent);box-shadow:inset 0 0 0 1px var(--accent)}.map-module-head{display:flex;justify-content:space-between;align-items:start;gap:8px;margin-bottom:8px}.map-module h4{font-size:13px;line-height:1.35;margin:0;font-weight:650;overflow-wrap:anywhere}.map-module small{display:block;font-size:10px;margin-top:3px}.map-module-mark{font-size:12px;font-weight:650;white-space:nowrap;color:var(--accent)}.category-chips{display:flex;flex-wrap:wrap;gap:5px}.category-chip{flex:1 1 110px;min-width:0;text-align:left;padding:6px 8px;border-radius:6px;border:1px dashed #d5be91;background:#fffdf7;font-size:11px;line-height:1.4}.category-chip:hover{border-color:var(--accent)}.category-chip.fixed{border-style:solid;border-color:#dbe3e8;background:#f5f8fa}.category-chip.vary{border-style:solid;border-color:#75b0a0;background:#dcefe6}.category-chip.outside{border-style:dotted}.chip-top{display:flex;align-items:start;justify-content:space-between;gap:6px}.chip-label{overflow-wrap:anywhere;font-weight:600}.chip-weight{white-space:nowrap;color:var(--muted)}.chip-status{display:block;margin-top:2px;font-size:10px;color:#7b591f}.category-chip.fixed .chip-status{color:var(--muted)}.category-chip.vary .chip-status{color:#125c48}.map-help{display:block;font-size:11px;margin-top:9px}.solver-result.error .map-module{border-color:#e5d6ca}.solver-result.error .assessment-map-head{border-color:#e5d6ca}
+@media(max-width:1000px){.assessment-map{grid-template-columns:repeat(2,minmax(0,1fr))}}@media(max-width:560px){.assessment-map{grid-template-columns:minmax(0,1fr)}}
+.table-wrap{position:relative}
+</style>
+</head>
+<body>
+<main>
+<header>
+<div><div class="eyebrow">Your MSc, in numbers</div><h1>UCL Grade Calculator</h1><p class="muted">Machine Learning · 2026/27 · Personal what-if calculator</p></div>
+<div class="actions"><button id="export">Export JSON</button><button id="import">Import JSON</button><button id="reset">Reset defaults</button><input type="file" id="import-file" accept=".json,application/json" hidden></div>
+</header>
+<div class="notice">Reference calculations, conditional on your programme requirements. Assessment weights are supplied by you; the 60-credit project and 15-credit taught-module presets await direct 2026/27 confirmation. Separate-pass requirements start as unconfirmed.</div>
+<div class="row"><small>Enter actual or hypothetical marks. Blank means unknown; zero means zero.</small><span id="save-status" role="status"></span></div>
+<div class="stats" aria-label="Scenario summary">
+<div class="stat"><span>Final weighted mark</span><strong id="overall">—</strong><small id="overall-detail">Enter marks to begin</small></div>
+<div class="stat"><span>Reference classification</span><strong id="classification" class="compact">Incomplete</strong><small id="classification-detail">All marks are needed</small></div>
+<div class="stat"><span>Credits at 70% or above</span><strong id="credits70">—</strong><small id="credits-detail">Includes the project</small></div>
+<div class="stat"><span>Completed module inputs</span><strong id="completed">0 / 9</strong><small id="structure">180 credits · project weight 33.33%</small></div>
+</div>
+<section class="panel" aria-labelledby="target-heading">
+<div class="row"><div><h2 id="target-heading">What marks do I need?</h2><small>Select <b>Vary</b> beside the assessments this calculator may change. Everything else stays fixed.</small></div><div class="actions"><button id="vary-exams">Vary blank exams</button><button id="vary-project">Vary project only</button><button id="vary-clear">Clear Vary</button></div></div>
+<div class="solver-controls">
+<label class="field">Calculate for<select id="scope"></select></label>
+<label class="field">Target<select id="target"></select></label>
+<label class="field" id="custom-field" hidden>Module target %<input id="custom-target" type="number" min="0" max="100" step="0.01" value="70"></label>
+<button id="apply" class="primary" disabled>Apply required marks</button>
+</div>
+<div class="solver-result" id="solver-box">
+<div id="solver-message" role="status" aria-live="polite"></div>
+<div class="assessment-map-head"><div><h3>Your assessment map</h3><small id="map-count"></small></div><div class="map-legend" aria-label="Assessment status legend"><span><i class="map-dot" aria-hidden="true"></i>Needs a mark</span><span><i class="map-dot fixed" aria-hidden="true"></i>Fixed mark</span><span><i class="map-dot vary" aria-hidden="true"></i>Vary</span></div></div>
+<div id="assessment-map" class="assessment-map" aria-label="Modules and their assessment categories"></div>
+<small class="map-help">Click an assessment to toggle Vary. Edit marks and weights in the module list below.</small>
+</div>
+<small>Selected assessments receive the same percentage; other combinations may also work. A 0% requirement is not permission to skip an assessment.</small>
+</section>
+<div class="section-head"><div><h2>Modules & assessments</h2><small>Edit marks as “achieved out of available.” Each module’s weights must total 100%.</small></div><div class="toolbar"><button id="delete-selected" class="danger" disabled>Delete selected (0)</button><button id="undo" hidden>Undo deletion</button><button id="add-module" class="primary">+ Add module</button></div></div>
+<div id="feedback" role="status"></div>
+<div id="modules"></div>
+<section class="panel">
+<details><summary>How the grades work · sources & assumptions</summary>
+<p>All modules count by their credits. With the default structure, final mark = (2 × taught average + project mark) ÷ 3. Component percentages, module marks and the final mean are rounded to two decimal places.</p>
+<ul><li>Level 7 module pass: 50.00%, plus any configured separate-pass requirements.</li><li>Distinction: overall ≥69.50%, or ≥68.50% with marks ≥70.00% in at least half of all credits.</li><li>Merit: overall ≥59.50%, or ≥58.50% with marks ≥60.00% in at least half of all credits.</li><li>The project must be passed. The taught MSc scheme adds no separate 70% project requirement for Distinction.</li><li>Standard condonement: up to 30 taught credits at 40.00–49.99%, subject to all award requirements. Set each affected module’s condonement designation before relying on this.</li><li>Unknown separate-pass designations are assumed to impose no additional threshold for the displayed scenario; results remain conditional. Known must-pass failures block award eligibility.</li><li>COMP0078’s two group assessments are combined into 14%; split them when you know their individual weights.</li><li>Editing the total away from 180 credits or using other than one project creates a custom scenario. A 180-credit setup alone does not establish programme compliance.</li></ul>
+<p>Official sources: <a href="https://www.ucl.ac.uk/study/current-students/academic-manual/chapters/chapter-4-assessment-framework-taught-programmes/section-4-classification" target="_blank" rel="noopener">2026/27 classification, §4.5</a> · <a href="https://www.ucl.ac.uk/study/current-students/academic-manual/chapters/chapter-4-assessment-framework-taught-programmes/section-2-module-assessment" target="_blank" rel="noopener">Module assessment, §2</a> · <a href="https://www.ucl.ac.uk/study/current-students/academic-manual/chapters/chapter-4-assessment-framework-taught-programmes/section-3-progression-award" target="_blank" rel="noopener">Award & condonement, §3</a> · <a href="https://www.ucl.ac.uk/prospective-students/graduate/taught-degrees/machine-learning-msc-2026" target="_blank" rel="noopener">180-credit programme</a> · <a href="https://www.ucl.ac.uk/prospective-students/open-days/sites/prospective-students_open-days/files/machine-learning.pdf" target="_blank" rel="noopener">Older 120 + 60 credit structure</a>.</p>
+<p>The current project catalogue could not be retrieved during research. Preset credits and individual separate-pass/condonement designations are not verified for 2026/27. This app uses manually entered effective marks; it does not calculate resit caps, penalties or module selection permissions.</p>
+</details>
+<div id="award-note"></div>
+</section>
+<footer><small>Runs entirely in your browser. Export a JSON backup before moving this file or changing browsers: local-file autosave behaviour varies.</small></footer>
+</main>
+<script id="grade-engine">
+'use strict';
+const Grade = (() => {
+  const RULES = Object.freeze({pass:5000, condone:4000, maxCondonedCredits:30, distinction:6950, distinctionAlternative:6850, merit:5950, meritAlternative:5850});
+  const types = ['Exam','Coursework','Group activity','In-class activity','Dissertation/project','Other'];
+  let nextId = 0;
+  const id = () => 'g' + Date.now().toString(36) + (++nextId).toString(36) + Math.random().toString(36).slice(2,8);
+  const assessment = (type='Exam',weight=100) => ({id:id(),label:type,type,weight,score:null,max:100,requirement:'unknown',minimum:50});
+  function defaults() {
+    const specs = [
+      ['Supervised Learning','COMP0078',[['Exam',86],['Group activity',14]]],
+      ['Bayesian Deep Learning','COMP0171',[['Exam',60],['Coursework',40]]],
+      ['Graphical Models','COMP0080',[['Exam',70],['Coursework',30]]],
+      ['Reinforcement Learning','COMP0089',[['Exam',50],['Coursework',50]]],
+      ['Statistical Natural Language Processing','COMP0087',[['Group activity',100]]],
+      ['Generative Artificial Intelligence','COMP0264',[['Exam',50],['Group activity',50]]],
+      ['Applied Machine Learning','COMP0081',[['Exam',50],['Coursework',50]]],
+      ['Emerging Topics in Machine Learning','COMP0168',[['In-class activity',25],['Group activity',35],['Coursework',40]]],
+      ['MSc Machine Learning Project','COMP0091',[['Dissertation/project',100]]]
+    ];
+    return {version:1,modules:specs.map(([name,code,parts],i)=>({id:id(),name,code,credits:i===8?60:15,kind:i===8?'project':'taught',condonement:'unknown',assessments:parts.map(([type,w])=>assessment(type,w))})),settings:{scope:'degree',target:'distinction',customTarget:70,vary:[]}};
+  }
+  // Decimal rational arithmetic: round only at the points required by the rules.
+  function ratio(value) {
+    const [mantissa, exponent='0'] = String(value).toLowerCase().split('e');
+    const [whole,fraction=''] = mantissa.split('.');
+    let n = BigInt(whole + fraction), d = 10n ** BigInt(fraction.length);
+    const e = Number(exponent);
+    if(e>0) n *= 10n ** BigInt(e); else if(e<0) d *= 10n ** BigInt(-e);
+    return [n,d];
+  }
+  const roundedRatio = (n,d) => Number((2n*n+d)/(2n*d));
+  const scaled = value => {const [n,d]=ratio(value);return roundedRatio(n*100n,d);};
+  function percent(score,max) {
+    const [a,b]=ratio(score),[c,d]=ratio(max);
+    return roundedRatio(a*d*10000n,b*c);
+  }
+  const numeric = (v,min,max) => typeof v==='number' && Number.isFinite(v) && v>=min && v<=max;
+  const twoDecimals = v => Math.abs(v*100-Math.round(v*100))<1e-7;
+  function errors(m) {
+    const result=[];
+    if(!numeric(m.credits,.01,10000)||!twoDecimals(m.credits)) result.push('Credits must be positive, with at most 2 decimals.');
+    if(!m.assessments.length) result.push('Add at least one assessment.');
+    let total=0, validWeights=true;
+    for(const a of m.assessments) {
+      const label=a.label||'Assessment';
+      if(!numeric(a.weight,0,100)||!twoDecimals(a.weight)) {result.push(label+': weight must be 0–100 with at most 2 decimals.');validWeights=false;} else total+=scaled(a.weight);
+      if(!numeric(a.max,Number.MIN_VALUE,1e9)) result.push(label+': available marks must be greater than zero (maximum 1 billion).');
+      if(a.score!==null && (!numeric(a.score,0,1e9)||a.score>a.max)) result.push(label+': achieved marks must be between 0 and available marks.');
+      if(a.requirement==='must' && (!numeric(a.minimum,0,100)||!twoDecimals(a.minimum))) result.push(label+': minimum must be 0–100 with at most 2 decimals.');
+    }
+    if(validWeights && total!==10000) result.push('Assessment weights total '+(total/100).toFixed(2)+'%; they must total 100%.');
+    return result;
+  }
+  function moduleResult(m, overrides=new Map()) {
+    const problems=errors(m);
+    if(problems.length) return {module:m,errors:problems,mark:null,complete:false,parts:[],failed:[],unknown:false};
+    let low=0n, high=0n, complete=true;
+    const failed=[];
+    const parts=m.assessments.map(a=>{
+      const p=overrides.has(a.id)?overrides.get(a.id):(a.score===null?null:percent(a.score,a.max));
+      const weight=BigInt(scaled(a.weight));
+      low+=BigInt(p??0)*weight; high+=BigInt(p??10000)*weight;
+      if(p===null) complete=false;
+      if(p!==null && a.requirement==='must' && p<scaled(a.minimum)) failed.push((a.label||'Assessment')+' needs '+a.minimum+'% separately.');
+      return {id:a.id,percent:p,contribution:p===null?null:Number(BigInt(p)*weight)/1e6};
+    });
+    return {module:m,errors:[],mark:complete?roundedRatio(low,10000n):null,low:roundedRatio(low,10000n),high:roundedRatio(high,10000n),complete,parts,failed,unknown:m.assessments.some(a=>a.requirement==='unknown')};
+  }
+  function band(mark,c60,c70,total) {
+    if(mark>=RULES.distinction || (mark>=RULES.distinctionAlternative && scaled(c70)*2>=scaled(total))) return 'Distinction';
+    if(mark>=RULES.merit || (mark>=RULES.meritAlternative && scaled(c60)*2>=scaled(total))) return 'Merit';
+    return 'Pass';
+  }
+  function evaluate(modules,overrides=new Map()) {
+    const results=modules.map(m=>moduleResult(m,overrides));
+    const invalid=results.filter(r=>r.errors.length);
+    const total=modules.reduce((sum,m)=>sum+(numeric(m.credits,.01,10000)?scaled(m.credits):0),0);
+    const projects=modules.filter(m=>m.kind==='project');
+    const custom=total!==18000 || projects.length!==1;
+    const common={results,total:total/100,custom,projects:projects.length,invalid,complete:false,mark:null,eligible:false,reasons:[],conditional:false,c60:0,c70:0,band:null};
+    if(!modules.length || invalid.length || !total) return common;
+    const complete=results.every(r=>r.complete);
+    const weighted = key => roundedRatio(results.reduce((sum,r)=>sum+BigInt(r[key])*BigInt(scaled(r.module.credits)),0n),BigInt(total));
+    const c60=results.reduce((s,r)=>s+(r.mark!==null&&r.mark>=6000?scaled(r.module.credits):0),0)/100;
+    const c70=results.reduce((s,r)=>s+(r.mark!==null&&r.mark>=7000?scaled(r.module.credits):0),0)/100;
+    if(!complete) return {...common,c60,c70,low:weighted('low'),high:weighted('high')};
+    const mark=weighted('mark'), reasons=[];
+    let condoned=0,conditional=results.some(r=>r.unknown);
+    if(!projects.length) reasons.push('A passed dissertation/project is required for an MSc award.');
+    for(const r of results) {
+      const m=r.module, name=m.name||'Unnamed module';
+      if(r.failed.length) reasons.push(name+': '+r.failed.join(' '));
+      if(r.mark<RULES.pass) {
+        if(m.kind==='project') reasons.push(name+': the project must reach 50%.');
+        else if(r.mark<RULES.condone) reasons.push(name+': below the 40% condonable range.');
+        else if(m.condonement==='must') reasons.push(name+': this module must pass independently.');
+        else {condoned+=scaled(m.credits); if(m.condonement==='unknown') conditional=true;}
+      }
+    }
+    if(condoned>RULES.maxCondonedCredits*100) reasons.push('More than 30 taught credits need condonement.');
+    if(mark<RULES.pass) reasons.push('The overall average must reach 50% for an MSc award.');
+    return {...common,complete:true,mark,c60,c70,band:band(mark,c60,c70,total/100),eligible:reasons.length===0,reasons,conditional,condoned:condoned/100};
+  }
+  function solve(doc) {
+    const s=doc.settings, chosen=s.scope==='degree'?doc.modules:doc.modules.filter(m=>m.id===s.scope);
+    if(!chosen.length) return {status:'invalid',message:'Add a module to begin.'};
+    const invalid=chosen.flatMap(m=>errors(m).map(e=>(m.name||'Module')+': '+e));
+    if(invalid.length) return {status:'invalid',message:invalid.join('\n')};
+    const ids=new Set(s.vary), selected=chosen.flatMap(m=>m.assessments.filter(a=>ids.has(a.id)));
+    const target=s.scope==='degree'?null:Number(s.target==='custom'?s.customTarget:s.target);
+    if(target!==null && ((s.target==='custom'&&s.customTarget===null)||!numeric(target,0,100)||!twoDecimals(target))) return {status:'invalid',message:'Enter a module target from 0 to 100%, with at most 2 decimals.'};
+    const missing=chosen.flatMap(m=>m.assessments.filter(a=>a.score===null&&!ids.has(a.id)).map(a=>(m.name||'Module')+' / '+(a.label||'Assessment')));
+    if(missing.length) return {status:'missing',message:'Enter a mark or select Vary for:\n'+missing.join('\n')};
+    const ranks={Pass:1,Merit:2,Distinction:3};
+    const needed=ranks[{pass:'Pass',merit:'Merit',distinction:'Distinction'}[s.target]];
+    const inspect=overrides=>s.scope==='degree'?evaluate(chosen,overrides):moduleResult(chosen[0],overrides);
+    const passes=r=>s.scope==='degree'?r.complete&&r.eligible&&ranks[r.band]>=needed:r.complete&&!r.failed.length&&r.mark>=scaled(target);
+    const current=inspect(new Map());
+    if(!selected.length) return {status:passes(current)?'achieved':'select',message:passes(current)?'Target already achieved with the entered scenario marks.':'Select Vary beside at least one assessment to calculate its required mark.',evaluation:current};
+    const candidate=p=>inspect(new Map(selected.map(a=>[a.id,p])));
+    const top=candidate(10000);
+    if(!passes(top)) return {status:'impossible',message:'Impossible with the current fixed marks, even with 100% in every selected assessment.'+(top.reasons?.length?'\n'+top.reasons.join('\n'):top.failed?.length?'\n'+top.failed.join('\n'):''),evaluation:top};
+    let low=0,high=10000;
+    while(low<high) {const middle=Math.floor((low+high)/2);if(passes(candidate(middle))) high=middle;else low=middle+1;}
+    const result=candidate(low),conditional=s.scope==='degree'?result.conditional:result.unknown;
+    return {status:'solution',percentage:low,ids:selected.map(a=>a.id),evaluation:result,conditional,alreadyAchieved:passes(current),message:(low/100).toFixed(2)+'% in each of '+selected.length+' selected assessment'+(selected.length===1?'':'s')+'.\n'+(s.scope==='degree'?'Final mark '+(result.mark/100).toFixed(2)+'% · '+result.band+(result.condoned?' · '+result.condoned+' credits require condonement':''):'Module mark '+(result.mark/100).toFixed(2)+'%')+(conditional?' · conditional on unconfirmed requirements.':'.')+(passes(current)?'\nYour entered scenario already meets this target.':'')};
+  }
+  function assertDocument(d) {
+    const fail=()=>{throw new Error('Invalid calculator JSON. Check its version, fields, IDs and numeric values.');};
+    if(!d||d.version!==1||!Array.isArray(d.modules)||d.modules.length>200||!d.settings) fail();
+    const ids=new Set();
+    const text=v=>typeof v==='string'&&v.length<=500;
+    const checkId=v=>{if(!text(v)||!v||v==='degree'||ids.has(v)) fail();ids.add(v);};
+    const optional=(v,min,max)=>v===null||numeric(v,min,max);
+    for(const m of d.modules) {
+      if(!m||!text(m.name)||!text(m.code)||!['taught','project'].includes(m.kind)||!['unknown','yes','must'].includes(m.condonement)||!optional(m.credits,.01,10000)||!Array.isArray(m.assessments)||m.assessments.length>100) fail();
+      checkId(m.id);
+      for(const a of m.assessments) {
+        if(!a||!text(a.label)||!types.includes(a.type)||!optional(a.weight,0,100)||!optional(a.score,0,1e9)||!optional(a.max,Number.MIN_VALUE,1e9)||!optional(a.minimum,0,100)||!['unknown','none','must'].includes(a.requirement)) fail();
+        if(a.score!==null&&a.max!==null&&a.score>a.max) fail();
+        checkId(a.id);
+      }
+    }
+    const s=d.settings;
+    if(typeof s.scope!=='string'||(s.scope!=='degree'&&!d.modules.some(m=>m.id===s.scope))||!Array.isArray(s.vary)||!s.vary.every(v=>typeof v==='string'&&d.modules.some(m=>m.assessments.some(a=>a.id===v)))||!optional(s.customTarget,0,100)) fail();
+    if(s.scope==='degree'?!['pass','merit','distinction'].includes(s.target):!['50','60','70','custom'].includes(s.target)) fail();
+    return d;
+  }
+  return {RULES,types,id,assessment,defaults,percent,scaled,errors,moduleResult,evaluate,solve,assertDocument};
+})();
+</script>
+<script id="grade-ui">
+'use strict';
+(() => {
+  const $=id=>document.getElementById(id), KEY='ucl-grade-calculator-v1';
+  const clone=o=>JSON.parse(JSON.stringify(o));
+  const escape=value=>String(value??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+  const fmt=bp=>bp===null||bp===undefined?'—':(bp/100).toFixed(2)+'%';
+  let doc=Grade.defaults(), undo=null, solution=null;
+  const deleteModules=new Set(),deleteAssessments=new Set();
+  let loadWarning='';
+  try {const raw=localStorage.getItem(KEY);if(raw) doc=Grade.assertDocument(JSON.parse(raw));} catch(e) {loadWarning='Autosave could not be loaded. Defaults are shown; import a JSON backup if needed.';}
+  $('save-status').textContent=loadWarning||'Local calculator · JSON backups recommended';
+  const options=(values,selected)=>values.map(v=>{const [value,label]=Array.isArray(v)?v:[v,v];return '<option value="'+escape(value)+'"'+(value===selected?' selected':'')+'>'+escape(label)+'</option>';}).join('');
+  function save() {
+    try {Grade.assertDocument(doc);localStorage.setItem(KEY,JSON.stringify(doc));$('save-status').textContent='Saved in this browser';}
+    catch(e) {$('save-status').textContent='Draft not saved. Export a valid scenario for backup; the previous saved copy is retained.';}
+  }
+  function input(m,a,field,label,{type='number',min='0',max='',step='any',className=''}={}) {
+    const item=a||m;
+    return '<input class="'+className+'" data-mid="'+escape(m.id)+'"'+(a?' data-aid="'+escape(a.id)+'"':'')+' data-field="'+field+'" type="'+type+'" aria-label="'+escape(label)+'" value="'+escape(item[field])+'"'+(type==='number'?' min="'+min+'" step="'+step+'"'+(max?' max="'+max+'"':''):' maxlength="500"')+'>';
+  }
+  function select(m,a,field,label,values,cls='') {
+    return '<select class="'+cls+'" data-mid="'+escape(m.id)+'"'+(a?' data-aid="'+escape(a.id)+'"':'')+' data-field="'+field+'" aria-label="'+escape(label)+'">'+options(values,(a||m)[field])+'</select>';
+  }
+  function assessmentHTML(m,a) {
+    const name=(m.name||'Module')+' / '+(a.label||'Assessment');
+    return '<tr><td><input type="checkbox" data-action="select-assessment" data-aid="'+escape(a.id)+'" aria-label="Select '+escape(name)+' for deletion"'+(deleteAssessments.has(a.id)?' checked':'')+'></td><td>'+input(m,a,'label',name+' label',{type:'text',className:'assessment-label'})+select(m,a,'type',name+' category',Grade.types,'assessment-type')+'</td><td>'+input(m,a,'weight',name+' weight percent',{max:'100',step:'.01'})+'</td><td>'+input(m,a,'score',name+' achieved marks')+'</td><td>'+input(m,a,'max',name+' available marks',{min:'0.000000001'})+'</td><td>'+select(m,a,'requirement',name+' separate-pass requirement',[['unknown','Unconfirmed'],['none','No separate pass'],['must','Must pass']],'requirement')+'<label class="minimum" id="minimum-'+escape(a.id)+'"'+(a.requirement==='must'?'':' hidden')+'>Min % '+input(m,a,'minimum',name+' minimum percent',{max:'100',step:'.01'})+'</label></td><td><input type="checkbox" data-action="vary" data-aid="'+escape(a.id)+'" aria-label="Vary '+escape(name)+'"'+(doc.settings.vary.includes(a.id)?' checked':'')+'></td><td class="assessment-result" id="assessment-'+escape(a.id)+'">—</td><td><button class="link-button danger" data-action="delete-assessment" data-mid="'+escape(m.id)+'" data-aid="'+escape(a.id)+'" aria-label="Delete '+escape(name)+'">Delete</button></td></tr>';
+  }
+  function renderModules() {
+    $('modules').innerHTML=doc.modules.length?doc.modules.map(m=>'<article class="module" aria-label="'+escape(m.name||'Unnamed module')+'"><div class="module-head"><label class="field module-name">Module name'+input(m,null,'name','Module name',{type:'text'})+'</label><label class="field">Code'+input(m,null,'code','Module code',{type:'text',className:'code'})+'</label><label class="field">Credits'+input(m,null,'credits',(m.name||'Module')+' credits',{min:'.01',step:'.01'})+'</label><label class="field">Type'+select(m,null,'kind',(m.name||'Module')+' type',[['taught','Taught'],['project','Project / dissertation']])+'</label><label class="field">Condonement'+select(m,null,'condonement',(m.name||'Module')+' condonement',[['unknown','Unconfirmed'],['yes','Condonable'],['must','Must pass module']])+'</label></div><div class="module-result" id="module-'+escape(m.id)+'"></div><div class="table-wrap"><table><thead><tr><th><span class="sr-only">Delete selection</span></th><th>Assessment & category</th><th>Weight %</th><th>Achieved</th><th>Out of</th><th>Separate pass</th><th>Vary</th><th>Result</th><th><span class="sr-only">Actions</span></th></tr></thead><tbody>'+m.assessments.map(a=>assessmentHTML(m,a)).join('')+'</tbody></table></div><div class="module-footer"><label class="selection-label"><input type="checkbox" data-action="select-module" data-mid="'+escape(m.id)+'"'+(deleteModules.has(m.id)?' checked':'')+'>Select module for deletion</label><div class="actions"><button class="link-button" data-action="add-assessment" data-mid="'+escape(m.id)+'">+ Assessment</button><button class="link-button danger" data-action="delete-module" data-mid="'+escape(m.id)+'">Delete module</button></div></div></article>').join(''):'<div class="panel empty">No modules yet. Add a module or reset to your course defaults.</div>';
+    renderControls();refresh();
+  }
+  function renderControls() {
+    $('scope').innerHTML=options([['degree','Overall MSc'],...doc.modules.map(m=>[m.id,m.name||'Unnamed module'])],doc.settings.scope);
+    $('target').innerHTML=options(doc.settings.scope==='degree'?[['pass','Pass'],['merit','Merit'],['distinction','Distinction']]:[['50','50% module average'],['60','60% module average'],['70','70% module average'],['custom','Custom module average']],doc.settings.target);
+    $('custom-field').hidden=doc.settings.scope==='degree'||doc.settings.target!=='custom';
+    $('custom-target').value=doc.settings.customTarget??'';
+  }
+  function renderAssessmentMap(result) {
+    const varying=new Set(doc.settings.vary), scope=doc.settings.scope;
+    const assessmentCount=doc.modules.reduce((count,m)=>count+m.assessments.length,0);
+    $('map-count').textContent=doc.modules.length+' modules · '+assessmentCount+' assessments · '+varying.size+' selected to vary';
+    $('assessment-map').innerHTML=result.results.map(r=>{
+      const m=r.module, outside=scope!=='degree'&&scope!==m.id;
+      const chips=m.assessments.map(a=>{
+        const part=r.parts.find(p=>p.id===a.id), selected=varying.has(a.id);
+        const state=selected?'vary':a.score===null?'missing':'fixed';
+        const detail=selected?(outside?'Selected · outside this target':'Vary · solver sets this mark'):r.errors.length?'Check module inputs':a.score===null?'Needs a mark':fmt(part?.percent)+' · fixed';
+        return '<button type="button" class="category-chip '+state+(outside?' outside':'')+'" data-vary-id="'+escape(a.id)+'" aria-pressed="'+selected+'" aria-label="'+escape((m.name||'Unnamed module')+' / '+(a.label||a.type)+': '+detail+'. Toggle Vary')+'"><span class="chip-top"><span class="chip-label">'+escape(a.label||a.type)+'</span><span class="chip-weight">'+escape(a.weight??'—')+'%</span></span><span class="chip-status">'+escape(detail)+'</span></button>';
+      }).join('');
+      return '<section class="map-module'+(scope===m.id?' target-module':'')+'" aria-label="'+escape(m.name||'Unnamed module')+' assessments"><div class="map-module-head"><div><h4>'+escape(m.name||'Unnamed module')+'</h4><small>'+escape(m.code?m.code+' · ':'')+escape(m.credits??'—')+' credits'+(outside?' · outside target':'')+'</small></div><span class="map-module-mark">'+(r.errors.length?'Check inputs':fmt(r.mark))+'</span></div><div class="category-chips">'+(chips||'<small>No assessments yet</small>')+'</div></section>';
+    }).join('')||'<small>Add a module to build your assessment map.</small>';
+  }
+  function refresh() {
+    const result=Grade.evaluate(doc.modules);
+    for(const r of result.results) {
+      const m=r.module, target=$('module-'+m.id);
+      if(r.errors.length) {target.className='module-result error-text';target.textContent=r.errors.join(' ');}
+      else {
+        target.className='module-result';
+        const status=!r.complete?'Incomplete':r.failed.length?'Separate-pass requirement unmet':r.mark>=5000?'Pass average':m.kind==='project'?'Project below pass':r.mark>=4000?'Below pass · check condonement':'Below condonable range';
+        target.innerHTML='<strong>'+fmt(r.mark)+'</strong><span>'+escape(status)+(r.complete?' · '+(r.mark/100*m.credits/result.total).toFixed(2)+' points toward degree':' · possible '+fmt(r.low)+'–'+fmt(r.high))+' · weights 100%</span>';
+      }
+      for(const a of m.assessments) {
+        const part=r.parts.find(p=>p.id===a.id),cell=$('assessment-'+a.id);
+        cell.innerHTML=part?fmt(part.percent)+'<span>'+(part.contribution===null?'Unknown mark':part.contribution.toFixed(2)+' module points')+'</span>':'—';
+      }
+    }
+    $('overall').textContent=fmt(result.mark);
+    $('overall-detail').textContent=result.invalid.length?'Fix invalid module inputs':!doc.modules.length?'Add modules to begin':!result.complete?'Possible '+fmt(result.low)+'–'+fmt(result.high):'Credit-weighted mean · all modules';
+    $('classification').textContent=result.invalid.length?'Invalid inputs':!result.complete?'Incomplete':!result.eligible?'Award unmet':result.band;
+    $('classification-detail').textContent=result.complete?(result.custom?'Custom scenario · reference only':result.conditional?'Conditional on unconfirmed requirements':'Reference result · check programme rules'):'Complete or solve for missing marks';
+    $('credits70').textContent=result.c70+' / '+result.total;
+    $('credits-detail').textContent='Half of all credits: '+(result.total/2)+' · ≥60%: '+result.c60;
+    $('completed').textContent=result.results.filter(r=>r.complete&&!r.errors.length).length+' / '+doc.modules.length;
+    const projectCredits=doc.modules.filter(m=>m.kind==='project').reduce((n,m)=>n+(Number(m.credits)||0),0);
+    $('structure').textContent=result.total+' credits · project weight '+(result.total?projectCredits/result.total*100:0).toFixed(2)+'%'+(result.custom?' · custom':'');
+    $('award-note').textContent=result.complete?(result.reasons.length?'Award requirements unmet: '+result.reasons.join(' '):'Scenario meets the configured award checks.'+(result.condoned?' '+result.condoned+' taught credits need condonement.':'')+(result.conditional?' Unconfirmed requirements could change eligibility.':'')):'Fill the remaining marks or use Vary to explore a complete scenario.';
+    solution=Grade.solve(doc);
+    if(solution.status==='missing') {
+      const relevant=doc.modules.filter(m=>doc.settings.scope==='degree'||m.id===doc.settings.scope);
+      const missingCount=relevant.reduce((count,m)=>count+m.assessments.filter(a=>a.score===null&&!doc.settings.vary.includes(a.id)).length,0);
+      $('solver-message').textContent=missingCount+' assessment'+(missingCount===1?' needs':'s need')+' a mark or a Vary selection before this target can be calculated.';
+    } else $('solver-message').textContent=solution.message;
+    $('solver-box').className='solver-result'+(['invalid','impossible'].includes(solution.status)?' error':'');
+    renderAssessmentMap(result);
+    $('apply').disabled=solution.status!=='solution';
+    updateSelection();
+  }
+  function updateSelection() {
+    const count=deleteModules.size+deleteAssessments.size;
+    $('delete-selected').textContent='Delete selected ('+count+')';$('delete-selected').disabled=!count;$('undo').hidden=!undo;
+  }
+  function cleanSettings() {
+    const ids=new Set(doc.modules.flatMap(m=>m.assessments.map(a=>a.id)));
+    doc.settings.vary=doc.settings.vary.filter(id=>ids.has(id));
+    if(doc.settings.scope!=='degree'&&!doc.modules.some(m=>m.id===doc.settings.scope)) {doc.settings.scope='degree';doc.settings.target='distinction';}
+  }
+  function remove(moduleIds,assessmentIds) {
+    undo=clone(doc);
+    doc.modules=doc.modules.filter(m=>!moduleIds.has(m.id));
+    doc.modules.forEach(m=>m.assessments=m.assessments.filter(a=>!assessmentIds.has(a.id)));
+    deleteModules.clear();deleteAssessments.clear();cleanSettings();save();renderModules();
+    $('feedback').textContent='Deleted. Undo is available until your next data edit.';
+  }
+  function dataChanged(structural=false) {
+    undo=null;$('feedback').textContent='';save();if(structural) renderModules();else refresh();
+  }
+  $('modules').addEventListener('input',e=>{
+    const el=e.target,{mid,aid,field,action}=el.dataset;
+    if(action==='select-module') {el.checked?deleteModules.add(mid):deleteModules.delete(mid);updateSelection();return;}
+    if(action==='select-assessment') {el.checked?deleteAssessments.add(aid):deleteAssessments.delete(aid);updateSelection();return;}
+    if(action==='vary') {doc.settings.vary=el.checked?[...new Set([...doc.settings.vary,aid])]:doc.settings.vary.filter(id=>id!==aid);save();refresh();return;}
+    if(!field) return;
+    const m=doc.modules.find(m=>m.id===mid),item=aid?m.assessments.find(a=>a.id===aid):m;
+    item[field]=el.type==='number'?(el.value===''?null:Number(el.value)):el.value;
+    if(field==='requirement') $('minimum-'+aid).hidden=item.requirement!=='must';
+    if(field==='name') renderControls();
+    dataChanged();
+  });
+  $('modules').addEventListener('click',e=>{
+    const button=e.target.closest('button');if(!button) return;
+    const {action,mid,aid}=button.dataset;
+    if(action==='delete-module') remove(new Set([mid]),new Set());
+    if(action==='delete-assessment') remove(new Set(),new Set([aid]));
+    if(action==='add-assessment') {const m=doc.modules.find(m=>m.id===mid);m.assessments.push(Grade.assessment('Coursework',0));dataChanged(true);}
+  });
+  $('assessment-map').addEventListener('click',e=>{
+    const button=e.target.closest('[data-vary-id]');if(!button)return;
+    const id=button.dataset.varyId;
+    const checkbox=[...$('modules').querySelectorAll('[data-action="vary"]')].find(el=>el.dataset.aid===id);
+    if(checkbox) checkbox.click();
+    [...$('assessment-map').querySelectorAll('[data-vary-id]')].find(el=>el.dataset.varyId===id)?.focus({preventScroll:true});
+  });
+  $('add-module').onclick=()=>{doc.modules.push({id:Grade.id(),name:'New module',code:'',credits:15,kind:'taught',condonement:'unknown',assessments:[Grade.assessment()]});dataChanged(true);};
+  $('delete-selected').onclick=()=>remove(deleteModules,deleteAssessments);
+  $('undo').onclick=()=>{if(!undo)return;doc=undo;undo=null;save();renderModules();$('feedback').textContent='Deletion undone.';};
+  $('scope').onchange=()=>{doc.settings.scope=$('scope').value;doc.settings.target=doc.settings.scope==='degree'?'distinction':'50';renderControls();save();refresh();};
+  $('target').onchange=()=>{doc.settings.target=$('target').value;renderControls();save();refresh();};
+  $('custom-target').oninput=()=>{doc.settings.customTarget=$('custom-target').value===''?null:Number($('custom-target').value);save();refresh();};
+  function vary(ids) {doc.settings.vary=ids;save();renderModules();}
+  $('vary-exams').onclick=()=>vary(doc.modules.flatMap(m=>m.assessments.filter(a=>a.type==='Exam'&&a.score===null).map(a=>a.id)));
+  $('vary-project').onclick=()=>vary(doc.modules.filter(m=>m.kind==='project').flatMap(m=>m.assessments.map(a=>a.id)));
+  $('vary-clear').onclick=()=>vary([]);
+  $('apply').onclick=()=>{
+    if(solution?.status!=='solution')return;
+    const ids=new Set(solution.ids),p=solution.percentage;
+    doc.modules.forEach(m=>m.assessments.forEach(a=>{if(ids.has(a.id))a.score=Number((a.max*p/10000).toPrecision(15));}));
+    dataChanged(true);$('feedback').textContent='Required scenario marks applied. They are hypothetical, not recorded results.';
+  };
+  $('export').onclick=()=>{
+    try {
+      Grade.assertDocument(doc);
+      const url=URL.createObjectURL(new Blob([JSON.stringify(doc,null,2)],{type:'application/json'}));
+      const anchor=document.createElement('a');anchor.href=url;anchor.download='ucl-grade-scenario.json';anchor.click();setTimeout(()=>URL.revokeObjectURL(url),1000);
+      $('feedback').textContent='JSON backup exported.';
+    } catch(e) {$('feedback').textContent='Correct invalid numeric values before exporting. Blank inputs and unfinished weight totals are allowed.';}
+  };
+  $('import').onclick=()=>$('import-file').click();
+  $('import-file').onchange=async e=>{
+    const file=e.target.files[0];if(!file)return;
+    try {
+      if(file.size>2e6) throw new Error('Choose a JSON backup smaller than 2 MB.');
+      const imported=Grade.assertDocument(JSON.parse(await file.text()));
+      if(!confirm('Replace this scenario with the imported backup? Export first if you want to keep the current one.'))return;
+      doc=imported;undo=null;deleteModules.clear();deleteAssessments.clear();save();renderModules();$('feedback').textContent='Scenario imported.';
+    } catch(error) {$('feedback').textContent='Import failed: '+error.message;}
+    finally {e.target.value='';}
+  };
+  $('reset').onclick=()=>{
+    if(!confirm('Replace all modules and marks with the blank course defaults? Export first to keep this scenario.'))return;
+    doc=Grade.defaults();undo=null;deleteModules.clear();deleteAssessments.clear();save();renderModules();$('feedback').textContent='Blank course defaults restored.';
+  };
+  renderModules();
+})();
+</script>
+</body>
+</html>
