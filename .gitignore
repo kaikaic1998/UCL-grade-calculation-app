@@ -1,3 +1,2 @@
-tests/preview*.png
 tests/results.json
 __pycache__/
